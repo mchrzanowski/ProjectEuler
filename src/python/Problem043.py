@@ -1,7 +1,7 @@
 '''
 Created on Jan 13, 2012
 
-@author: polak
+@author: mchrzanowski
 '''
 from time import time
 
