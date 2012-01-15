@@ -18,10 +18,11 @@ def dynamicIteration():
                         for f in xrange(0, LIMIT + 1 - a - b - c - d - e, 5):
                             for g in xrange(0, LIMIT + 1 - a - b - c - d - e - f, 2):
                                 for h in xrange(0, LIMIT + 1 - a - b - c - d - e - f - g, 1):
-                                    if a + b + c + d + e + f + g + h == LIMIT:
+                                    if a + b + c + d + e + f + g + h is LIMIT:
                                         i += 1
+
     return i
- 
+    
 def main(): 
     begin = time()
     print dynamicIteration()
