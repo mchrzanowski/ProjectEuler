@@ -29,9 +29,12 @@ def main():
     possibilities = set([])
     
     for i in xrange(1, LIMIT + 1):
+        iString = str(i)
+        if '0' in iString:
+            continue
         for j in xrange(i + 1, LIMIT + 1):
             product = i * j
-            if stringIsPandigital(str(i) + str(j) + str(product)):
+            if stringIsPandigital(iString + str(j) + str(product)):
                 possibilities.add(product)
                 
     print "Sum of all Unique Products: ", sum(possibilities)
