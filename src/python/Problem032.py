@@ -6,9 +6,9 @@ Created on Jan 15, 2012
 
 from time import time
 
-LIMIT = 1963    # found through numerical analysis
+LIMIT = 1963            # found through numerical analysis
 PANDIGITAL_NUMBERS = 9
-MAX_PRODUCT = 7852
+MAX_PRODUCT = 9876      # max product as it must be 4 digits 
 
 def stringIsPandigital(numberString):
     
@@ -26,7 +26,6 @@ def stringIsPandigital(numberString):
 def main():
     
     start = time()
-
     possibilities = set([])
     
     for i in xrange(1, LIMIT + 1):
@@ -39,11 +38,9 @@ def main():
                 break
             if stringIsPandigital(iString + str(j) + str(product)):
                 possibilities.add(product)
-                
+
     print "Sum of all Unique Products: ", sum(possibilities)
-    
     end = time()
-    
     print "Runtime: ", end - start, " seconds."
 
 if __name__ == '__main__':
