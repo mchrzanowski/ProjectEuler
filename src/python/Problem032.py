@@ -8,6 +8,7 @@ from time import time
 
 LIMIT = 1963    # found through numerical analysis
 PANDIGITAL_NUMBERS = 9
+MAX_PRODUCT = 7852
 
 def stringIsPandigital(numberString):
     
@@ -34,6 +35,8 @@ def main():
             continue
         for j in xrange(i + 1, LIMIT + 1):
             product = i * j
+            if product > MAX_PRODUCT:
+                break
             if stringIsPandigital(iString + str(j) + str(product)):
                 possibilities.add(product)
                 
