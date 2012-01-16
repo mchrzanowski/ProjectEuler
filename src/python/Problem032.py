@@ -38,7 +38,7 @@ def main():
                 break
             if stringIsPandigital(iString + str(j) + str(product)):
                 possibilities.add(product)
-
+    
     print "Sum of all Unique Products: ", sum(possibilities)
     end = time()
     print "Runtime: ", end - start, " seconds."
