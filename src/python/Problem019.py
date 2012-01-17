@@ -38,12 +38,13 @@ def main():
            
             runningDayCounter += daysInMonth[month]
             
-             # leap years occur in years divisible by 4 but not on centuries divisible by 400
+            # leap years occur in years divisible by 4 and, for centuries, only when divisible by 400
             if month == 2 and year % 4 is 0:
-                if year % 100 is 0 and year % 100 is 0:
-                    runningDayCounter += 1   
-                elif year % 100 is not 0:
+                if year % 100 is not 0:
                     runningDayCounter += 1
+                elif year % 400 is 0:
+                    runningDayCounter += 1   
+                
     
     end = time()
             
