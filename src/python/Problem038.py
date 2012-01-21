@@ -9,8 +9,8 @@ from time import time
 from math import ceil
 
 LIMIT = 9999        # as a ceiling, since any candidate must be multiplied by at least 2 and 
-                    # hence must at least double its length for the first one concatenation operation, 
-                    # the limit must be at most 4 digits ( 4 + 4 = 8)
+                    # hence must at least double its length for the first concatenation operation, 
+                    # the candidate size limit must be at most 4 digits ( 4 + 4 = 8)
 LENGTH_LIMIT = 9    # [1-9] pandigital number
 
 def main():
