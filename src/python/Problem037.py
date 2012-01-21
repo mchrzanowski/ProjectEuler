@@ -7,7 +7,7 @@ Created on Jan 21, 2012
 from time import time
 from ProjectEulerConstants import isPrime
 
-SOLUTION_LIMIT = 11
+SOLUTION_LIMIT = 11     # we know there to only exist 11 truncatable primes
 
 def produceNumbersFromRightTruncation(number):
     number = str(number)
@@ -27,7 +27,7 @@ def main():
     solutionSet = set([])
     candidate = 11           # skip 2,3,5,7 as per the question.
     
-    while len(solutionSet) != 11:
+    while len(solutionSet) != SOLUTION_LIMIT:
                 
         if isPrime(candidate):
             
