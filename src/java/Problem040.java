@@ -16,8 +16,7 @@ public class Problem040 {
 		Set<Integer> set = new HashSet<Integer>();
 		
 		for (int pow = 0; pow < 7 ; pow++){
-			set.add((int)Math.pow(10, pow));
-			
+			set.add((int)Math.pow(10, pow));	
 		}
 				
 		for (long l = 1L; l <= LIMIT; l++){
