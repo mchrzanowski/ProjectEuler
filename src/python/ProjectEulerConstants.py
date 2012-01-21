@@ -41,7 +41,7 @@ def isNumberPandigital(number, lastNumberToVerify = 9, includeZero = False):
     else:
         startingNumber = 1
     
-    number = str(number)
+    number = str(int(number))       # convert to int to get rid of initial zeroes. then convert to string.
     
     if len(number) != numberLimit:
         return False 
