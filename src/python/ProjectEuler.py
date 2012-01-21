@@ -5,7 +5,11 @@ Created on Jan 19, 2012
 '''
     
 def isPrime(n):
-    '''check if integer n is a prime'''
+    '''
+    check if integer n is a prime
+    from: http://www.daniweb.com/software-development/python/code/216880
+    '''
+    
     # make sure n is a positive integer
     n = abs(int(n))
     # 0 and 1 are not primes
