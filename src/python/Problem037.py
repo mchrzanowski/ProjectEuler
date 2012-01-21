@@ -29,7 +29,8 @@ def main():
     
     while len(solutionSet) != SOLUTION_LIMIT:
                 
-        if isPrime(candidate):
+        if '0' not in str(candidate) and isPrime(candidate):
+            
             
             isPrimeFromLeftTruncation = True
             
