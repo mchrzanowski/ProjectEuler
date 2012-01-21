@@ -23,3 +23,10 @@ def isPrime(n):
         if n % x == 0:
             return False
     return True
+
+def isNumberPalindromic(number):
+    ''' check if number is a palindrome '''
+    number = str(number)
+    if number[: len(number) / 2] == number[:: -1][: len(number) / 2]:
+            return True
+    return False
