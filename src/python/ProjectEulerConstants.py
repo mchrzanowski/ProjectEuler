@@ -30,3 +30,35 @@ def isNumberPalindromic(number):
     if number[: len(number) / 2] == number[:: -1][: len(number) / 2]:
             return True
     return False
+
+def isNumberPandigital(number, lastNumberToVerify = 9, includeZero = False):
+    ''' check if number is pandigital '''
+    
+    numberLimit = lastNumberToVerify
+    if includeZero:
+        startingNumber = 0
+        numberLimit += 1
+    else:
+        startingNumber = 1
+    
+    number = str(number)
+    
+    if len(number) != numberLimit:
+        return False 
+    
+    listOfNumbers = [char for char in number]
+    for i in xrange(startingNumber, lastNumberToVerify + 1):
+        stringifiedNumber = str(i)
+        if stringifiedNumber in listOfNumbers:
+            listOfNumbers.remove(stringifiedNumber)
+        else:
+            return False
+        
+    if len(listOfNumbers) == 0:
+        return True
+    else:
+        return False
+    
+    
+    
+    

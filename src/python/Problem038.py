@@ -1,44 +1,36 @@
 '''
-Created on Jan 13, 2012
+Created on Jan 20, 2012
 
 @author: mchrzanowski
 '''
 
-import sys
+from ProjectEulerConstants import isNumberPandigital
 from time import time
+from math import ceil
 
-
-perimeter = {}
-
-LIMIT = 1000
+LIMIT = 9999        # as a ceiling, since any candidate must be multiplied by at least 2 and 
+                    # hence must at least double its length for the first one concatenation operation, 
+                    # the limit must be at most 4 digits ( 4 + 4 = 8)
+LENGTH_LIMIT = 9    # [1-9] pandigital number
 
 def main():
-
-    start = time()    
-    for i in xrange(1, LIMIT / 3):
-        for j in xrange(i + 1, LIMIT / 2):
-            c = (i ** 2 + j ** 2) ** 0.5
-            p = int(i + j + c)
-            if p > LIMIT:
-                break
-            if c - int(c) <= sys.float_info.epsilon:
-                if p not in perimeter:
-                    perimeter[p] = 0
-                perimeter[p] = perimeter[p] + 1
+    start = time()
+    maxNumber = 0
+    for i in xrange(2, LIMIT):
+        numberString = str(i)
+        for multiplier in xrange(2, int(ceil(float(LENGTH_LIMIT) / (2 * len(str(i))))) + 1):    # candidate must at least fit 2 numbers.
+            numberString += str(i * multiplier)
             
-    maxSize = -1
-    maxP    = -1
-    for key in perimeter:
-        if perimeter[key] > maxSize:
-            maxSize = perimeter[key]
-            maxP = key
+            if len(numberString) > LENGTH_LIMIT:
+                break
+            
+            elif len(numberString) == LENGTH_LIMIT and isNumberPandigital(numberString):
+                    if int(numberString) > maxNumber:
+                       maxNumber = int(numberString)
     
+    print "Max pandigital number constructed this way: ", maxNumber                   
     end = time()
-                    
-    print "maxSize: ", maxSize
-    print "maxP: ", maxP
-    print "Runtime: ", end - start, " secs."
-                    
-        
+    print "Runtime: ", end - start, " seconds."
+    
 if __name__ == '__main__':
     main()
