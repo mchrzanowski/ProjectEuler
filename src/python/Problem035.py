@@ -4,7 +4,7 @@ Created on Jan 19, 2012
 @author: mchrzanowski
 '''
 
-from ProjectEulerConstants import isPrime
+from ProjectEuler import isPrime
 from time import time
 
 LIMIT  = 1000000

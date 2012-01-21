@@ -5,9 +5,9 @@ Created on Jan 21, 2012
 '''
 
 from time import time
-from ProjectEulerConstants import isPrime
+from ProjectEuler import isPrime
 
-SOLUTION_LIMIT = 11     # we know there to only exist 11 truncatable primes
+SOLUTION_LIMIT = 11     # we know there to only exist 11 circularly-truncatable primes
 SINGLE_DIGIT_PRIME_SET = set(['2','3','5','7'])     # list of single-digit primes.
 DOUBLE_DIGIT_PRIME_SET = set(['23','29','31','37','41','43','47','53','59','61','67','71','73','79'])   #relevant 2-digit primes.
 
@@ -38,9 +38,9 @@ def main():
     
     start = time()
    
-    primeSet = set([])
+    primeSet    = set([])
     solutionSet = set([])
-    candidate = str(11)           # skip 2,3,5,7 as per the question.
+    candidate   = str(11)           # skip 2,3,5,7 as per the question.
     
     while len(solutionSet) != SOLUTION_LIMIT:
                 
