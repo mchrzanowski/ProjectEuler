@@ -63,6 +63,18 @@ def isNumberPandigital(number, lastNumberToVerify = 9, includeZero = False):
     else:
         return False
     
-    
-    
+def generatePentagonalNumbers(numberLimit, startingNumber = 1):
+    ''' generator that produces pentagonal numbers for 1..numberLimit '''
+    for i in xrange(startingNumber, numberLimit + 1):
+        yield i * (3 * i - 1) / 2    
+
+def generateHexagonalNumbers(numberLimit, startingNumber = 1):
+    ''' generator that produces hexagonal numbers for 1..numberLimit '''
+    for i in xrange(startingNumber, numberLimit + 1):
+        yield i * (2 * i - 1)
+        
+def generateTriangleNumbers(numberLimit, startingNumber = 1): 
+    ''' generator that produces triangle numbers for 1..numberLimit '''
+    for i in xrange(startingNumber, numberLimit + 1):
+        yield i * (i + 1) / 2
     

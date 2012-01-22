@@ -4,7 +4,7 @@ Created on Jan 20, 2012
 @author: mchrzanowski
 '''
 
-from ProjectEuler import isNumberPandigital
+from ProjectEulerLibrary import isNumberPandigital
 from time import time
 from math import ceil
 

@@ -5,7 +5,7 @@ Created on Jan 20, 2012
 '''
 
 from time import time
-from ProjectEuler import isNumberPalindromic
+from ProjectEulerLibrary import isNumberPalindromic
 
 LIMIT = 1000000
 

@@ -4,14 +4,10 @@ Created on Jan 21, 2012
 @author: mchrzanowski
 '''
 from time import time
+from ProjectEulerLibrary import generatePentagonalNumbers
 
 LIMIT = 10000    # since the pentagonal generator increases by n^2 for each n, we want the smallest pair of pentagonals possible
                 # whose sums and differences are both pentagonal. So the limit can't be too great; set the limit to be 10,000.
-
-def generatePentagonalNumbers(numberLimit):
-    for i in xrange(1, numberLimit + 1):
-        yield i * (3 * i - 1) / 2
-        
 
 def main():
     

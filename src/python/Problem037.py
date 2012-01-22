@@ -5,7 +5,7 @@ Created on Jan 21, 2012
 '''
 
 from time import time
-from ProjectEuler import isPrime
+from ProjectEulerLibrary import isPrime
 
 SOLUTION_LIMIT = 11     # we know there to only exist 11 circularly-truncatable primes
 SINGLE_DIGIT_PRIME_SET = set(['2','3','5','7'])     # list of single-digit primes.
