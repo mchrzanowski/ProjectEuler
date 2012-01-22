@@ -15,7 +15,7 @@ def main():
     primeSet = set([])
     squaredDict = {}
 
-    candidate   = 5
+    candidate   = 11     # 3, 5, 7 are prime. 9 is given to not break the conjecture
     solution    = 0
     
     while solution == 0:
