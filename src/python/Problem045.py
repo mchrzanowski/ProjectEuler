@@ -8,7 +8,7 @@ from ProjectEulerLibrary import generateTriangleNumbers, generateHexagonalNumber
 
 from time import time
 
-LIMIT = 400                         # found through trial and error
+LIMIT = 300                         # found through trial and error
 
 STARTING_PENTAGONAL_NUMBER  = 165    # based on the problem
 STARTING_TRIANGLE_NUMBER    = 285
@@ -17,11 +17,12 @@ STARTING_HEXAGONAL_NUMBER   = 143
 def main():
     
     start = time()
-    triangleSet = set([number for number in generateTriangleNumbers(LIMIT, STARTING_TRIANGLE_NUMBER)])
-    hexagonalSet = set([number for number in generateHexagonalNumbers(LIMIT, STARTING_HEXAGONAL_NUMBER)])
+    solution = -1
+    setToCheck = set([number for number in generateTriangleNumbers(LIMIT, STARTING_TRIANGLE_NUMBER)]) \
+        & set([number for number in generateHexagonalNumbers(LIMIT, STARTING_HEXAGONAL_NUMBER)])
     
     for number in generatePentagonalNumbers(LIMIT, STARTING_PENTAGONAL_NUMBER):
-        if number in triangleSet and number in hexagonalSet:
+        if number in setToCheck:
             solution = number
             break
     
