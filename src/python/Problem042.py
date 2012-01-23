@@ -10,7 +10,8 @@ from time import time
 LIMIT = 100000  # to get this high, we'd need a word with an equivalent sum of 'Z' (26) 3800+ times
 
 def createWordSet():
-    wordFile =  open(os.path.join(os.curdir,'Problem042Words.txt'), 'r')
+    
+    wordFile =  open(os.path.join(os.curdir,'./requiredFiles/Problem042Words.txt'), 'r')
     wordSet = set([])
     for line in wordFile:
         wordList = line.split(",")

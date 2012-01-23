@@ -41,7 +41,7 @@ def main():
     
     begin = time()
     
-    triangle = open(os.path.join(os.curdir,'Problem067Triangle.txt'), 'r')
+    triangle = open(os.path.join(os.curdir,'./requiredFiles/Problem067Triangle.txt'), 'r')
     weights = createWeightMatrix(triangle)
     calculateLargestSum(weights)
     
