@@ -1,4 +1,4 @@
-package projectEuler;
+package ProjectEulerLibrary;
 
 import java.util.LinkedList;
 import java.util.List;

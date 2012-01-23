@@ -8,26 +8,27 @@ from time import time
 from math import sqrt, ceil
 from ProjectEulerLibrary import isPrime
 
+LIMIT = 10000000
+
 def main():
     
     start = time()
     
     primeSet = set([])
-    squaredDict = {}
-
-    candidate   = 11     # 3, 5, 7 are prime. 9 is given to not break the conjecture
+    
+#    squaredDict = {}
+#    for i in xrange(0, LIMIT):
+#        squaredDict[i] = i ** 2 
+        
+    candidate   = 5
     solution    = 0
     
     while solution == 0:
+        createdUsingPrime = False        
         if candidate not in primeSet and not isPrime(candidate):
-            createdUsingPrime = False
-            for i in xrange(1, int(ceil(sqrt(candidate / 2)))): # only check natural numbers for primality
-                
-                if i not in squaredDict:
-                    squaredDict[i] = 2 * i ** 2              
-                
-                remainderValue = candidate - squaredDict[i]
-                                
+           
+            for i in xrange(1, int(ceil(sqrt(candidate))) + 1):
+                remainderValue = candidate - 2 * i ** 2
                 if remainderValue in primeSet or isPrime(remainderValue):
                     primeSet.add(remainderValue)
                     createdUsingPrime = True
@@ -35,14 +36,21 @@ def main():
 
             
             if not createdUsingPrime:
+                print "found: ", candidate
                 solution = candidate
                 
         else:
             primeSet.add(candidate)
         
         candidate += 2
+        
+        if candidate % 100000 == 1:
+            print candidate
+        
+#        if candidate > 10000000:
+#            exit(0)
             
-    print "Smallest odd, composite number that breaks the conjecture: ", solution     
+    print "Smallest number that breaks the conjecture: ", solution     
         
     end = time()
     
