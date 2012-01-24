@@ -149,7 +149,6 @@ class Prime:
         #-- 4 --
         self._pMax  =  limit
 
-
 # - - -   . f a c t o r i z e   - - -
 
     def factorize ( self, n ):
