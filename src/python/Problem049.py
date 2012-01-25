@@ -9,7 +9,7 @@ from time import time
 
 SEQUENCE_LIMIT = 3
 LIMIT = 9999
-START = 1000
+START = 1111
 
 def constructPrimeMap(primeObject, primeDict):
     ''' construct lists of all prime numbers. group by character types. 
@@ -68,7 +68,7 @@ def main():
     discoverArithmeticSequences(primeDict, solutionSet)
     
     for solution in solutionSet:
-        print "Concatenated tuple: ", str(solution[0]) + str(solution[1]) + str(solution[2])
+        print "Concatenated tuple: ", ''.join([str(number) for number in solution])
         
     end = time()
     print "Runtime: ", end - start, " seconds."   
