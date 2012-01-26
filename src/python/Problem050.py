@@ -11,14 +11,14 @@ LIMIT = 1000000
 def main():
     start = time()
     primeObject = ProjectEulerPrime()
-    primeList = []                      # not quite sure if this proof is rigorous enough, but numerical analysis verified it:
-    for i in xrange(LIMIT / 21 + 1):    # the problem says that there are 21 primes in a sequence that produces 953. 
-                                        # so we know that there has to be at least a 21 prime sequence in a prime < million.
-        if primeObject.isPrime(i):      # each prime has to therefore be at most 1/21 of the series' summation.
-            primeList.append(i)         # in fact, since 1_000_000 is not iself a prime, this is an upper bound.
-    
-    maxNumberOfPrimes = 0
+    primeList = [2]                     # 2 is the only even prime.           
+    for i in xrange(3, LIMIT / 183, 2): # interesting pattern:  
+                                        # all primes will be in the range of numbers 
+        if primeObject.isPrime(i):      # LIMIT / (number of prime terms in the series for LIMIT / 10 )
+            primeList.append(i)         # so 10 = 10 / 1, 100 = 100 / 2, 1000 = 1000 / 6, 10000 = 10000 / 21, 
+                                        # 100000 = 100000 / 65, 1000000 = 1000000 / 183 and so on for at least 100M.
     maxPrime = 0
+    maxNumberOfPrimes = 0
     
     for i in xrange(len(primeList)):
         currentPrimeSequence = [primeList[i]]
@@ -33,7 +33,6 @@ def main():
                      maxPrime = sum(currentPrimeSequence)
             elif currentSum >= LIMIT:
                 break
-       
             
     print "Longest number of sequential primes that sum to a prime: ", maxNumberOfPrimes
     print "Sum: ", maxPrime
