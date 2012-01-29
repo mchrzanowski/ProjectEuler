@@ -23,7 +23,7 @@ def substitueAndCheckPrimality(primeObject, sequence):
             continue
         if not primeObject.isPrime(str.replace(sequence, ELEVENTH_BASE, str(i))):
             failures += 1
-            if failures >= 2:
+            if failures >= 2:       # of at most 10 iterations, no more than 2 can fail to produce primes.
                 return False
         else:
             primesFound += 1
