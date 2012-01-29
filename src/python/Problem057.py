@@ -9,7 +9,7 @@ from time import time
 LIMIT = 1000
 BASE = 2
 
-def findLargerDigitExpansions():
+def findLargeNumeratorExpansions():
     numeratorDict           = {}
     denominatorDict         = {}
     
@@ -37,7 +37,7 @@ def findLargerDigitExpansions():
 def main():
     
     start = time()
-    print "Solutions: ", findLargerDigitExpansions()
+    print "Solutions: ", findLargeNumeratorExpansions()
     end = time()
     print "Runtime: ", end - start, " seconds."
     
