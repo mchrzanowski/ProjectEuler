@@ -18,12 +18,15 @@ def substitueAndCheckPrimality(primeObject, sequence):
     
     failures = 0
     primesFound = 0
+    skipOne = False
     for i in xrange(10):
         if i == 0 and sequence[0] == ELEVENTH_BASE:
+            skipOne = True
             continue
         if not primeObject.isPrime(str.replace(sequence, ELEVENTH_BASE, str(i))):
             failures += 1
-            if failures >= 2:       # of at most 10 iterations, no more than 2 can fail to produce primes.
+            if (skipOne and failures >= 2) or \
+            (not skipOne and failures > 2):       # of at most 10 iterations, no more than 2 can fail to produce primes.
                 return False
         else:
             primesFound += 1
