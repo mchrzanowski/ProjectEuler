@@ -49,12 +49,12 @@ def base11Increment(sequence, valueToCheck = -1):
         sequence[valueToCheck] = '0'
         return base11Increment(sequence, valueToCheck - 1)
         
-    elif sequence[valueToCheck] == '9':
+    if sequence[valueToCheck] == '9':
         sequence[valueToCheck] = ELEVENTH_BASE
         return
-    else:
-       sequence[valueToCheck] = chr(ord(sequence[valueToCheck]) + 1)
-       return
+    
+    sequence[valueToCheck] = chr(ord(sequence[valueToCheck]) + 1)
+    return
     
 def main():
     '''
