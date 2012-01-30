@@ -5,7 +5,6 @@ Created on Jan 30, 2012
 '''
 
 from ProjectEulerPrime import ProjectEulerPrime
-from math import sqrt
 from time import time
 
 RATIO = 0.1
@@ -38,7 +37,7 @@ def determineSpiralLevelWithCorrectRatio(primeObject):
         if primeObject.isPrime(candidate):
             totalPrimeSpirals += 1 
             
-        sqrtOfCandidate = sqrt(candidate)
+        sqrtOfCandidate = candidate ** 0.5
         
         if sqrtOfCandidate.is_integer(): # layer edge. update offset to start skipping more odd numbers
             currentOffsetUsed += 1
