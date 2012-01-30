@@ -37,11 +37,13 @@ def determineSpiralLevelWithCorrectRatio(primeObject):
         totalSpiralNumbers += 1
         if primeObject.isPrime(candidate):
             totalPrimeSpirals += 1 
+            
+        sqrtOfCandidate = sqrt(candidate)
         
-        if sqrt(candidate).is_integer(): # layer edge. update offset to start skipping more odd numbers
+        if sqrtOfCandidate.is_integer(): # layer edge. update offset to start skipping more odd numbers
             currentOffsetUsed += 1
             if totalPrimeSpirals > 0 and float(totalPrimeSpirals) / totalSpiralNumbers < RATIO:
-                return int(candidate ** 0.5)    # side length of a square is (s^2)^0.5
+                return sqrtOfCandidate    # side length of a square is (s^2)^0.5
         
         candidate += 2 * (currentOffsetUsed + 1)
 
