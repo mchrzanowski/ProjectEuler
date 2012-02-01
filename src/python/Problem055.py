@@ -31,7 +31,7 @@ def main():
             
             if newCandidate in numbersLeadingToPalindromes or isNumberPalindromic(newCandidate):
                 possibleLychrel = False
-                numbersLeadingToPalindromes ^= iterationIntermediates
+                numbersLeadingToPalindromes |= iterationIntermediates
                 break
             
             candidate = newCandidate
