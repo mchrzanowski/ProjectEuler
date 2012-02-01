@@ -15,6 +15,7 @@ def main():
     start = time()
     solutionSet = set([])
     numbersLeadingToPalindromes = set([])
+    
     for i in xrange(1, LIMIT):
         iterationNumber = 0
         candidate = i
@@ -26,6 +27,7 @@ def main():
             mirroredNumber = int(str(candidate)[::-1])
             
             newCandidate = candidate + mirroredNumber
+            iterationIntermediates.add(newCandidate)
             
             if newCandidate in numbersLeadingToPalindromes or isNumberPalindromic(newCandidate):
                 possibleLychrel = False
@@ -33,7 +35,6 @@ def main():
                 break
             
             candidate = newCandidate
-            iterationIntermediates.add(candidate)
             iterationNumber += 1
         
         if possibleLychrel:
