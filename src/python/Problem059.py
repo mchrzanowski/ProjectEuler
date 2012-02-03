@@ -19,7 +19,12 @@ def generateCipheredSequence():
     for row in cipherFile: 
         for number in row: 
             yield int(number)
-            
+
+def decryptSubsetUsingAKey(decryptedNumbers, originalNumbers, key, whereToBegin, iterateBy):
+    for i in xrange(whereToBegin, len(originalNumbers), iterateBy):
+        decryptedNumbers[i] = originalNumbers[i] ^ key
+        
+    
 def decryptUsingKey(text, keyTuple):
     i = 0
     while i < len(text):
@@ -36,18 +41,29 @@ def decryptUsingKey(text, keyTuple):
 def discoverLikelyKey(encryptedNumberList, commonWordSet):
     STARTING_LETTER = 'a'
     ENDING_LETTER = 'z'
+    KEY_LENGTH = 3
     
     highestHitCount = None
     mostLikelyKey = None
+    candiateList = None
+    
+    decryptedNumberList = list(encryptedNumberList)
     
     # iterate through potential ciphers.
     for a in xrange(ord(STARTING_LETTER), ord(ENDING_LETTER) + 1):
+        
+        decryptSubsetUsingAKey(decryptedNumberList, encryptedNumberList, a, 0, KEY_LENGTH)
+        
         for b in xrange(ord(STARTING_LETTER), ord(ENDING_LETTER) + 1):
+            
+            decryptSubsetUsingAKey(decryptedNumberList, encryptedNumberList, b, 1, KEY_LENGTH)
+            
             for c in xrange(ord(STARTING_LETTER), ord(ENDING_LETTER) + 1):
                 
-                candidateKey = tuple([a, b, c])
-                decryptedString = ''.join([chr(letter).lower() for letter in decryptUsingKey(encryptedNumberList, candidateKey)]) 
+                decryptSubsetUsingAKey(decryptedNumberList, encryptedNumberList, c, 2, KEY_LENGTH)
+                
                 # one case for consistency.
+                decryptedString = ''.join([chr(letter).lower() for letter in decryptedNumberList]) 
                 
                 candidateHits = 0
                 for word in commonWordSet:      
@@ -56,9 +72,10 @@ def discoverLikelyKey(encryptedNumberList, commonWordSet):
                 
                 if candidateHits > highestHitCount:
                     highestHitCount = candidateHits
-                    mostLikelyKey = candidateKey
-    
-    return mostLikelyKey
+                    mostLikelyKey = tuple([a, b, c])
+                    candiateList = list(decryptedNumberList)
+                    
+    return mostLikelyKey, candiateList
  
 def main():
     ''' create a set containing the most common 100 English words (thanks, Wikipedia!).
@@ -73,8 +90,8 @@ def main():
     
     encryptedNumberList = [number for number in generateCipheredSequence()]
     
-    key = discoverLikelyKey(encryptedNumberList, commonWordSet)
-    sumOfDecryptedList = sum([letter for letter in decryptUsingKey(encryptedNumberList, key)])
+    key, candiateList = discoverLikelyKey(encryptedNumberList, commonWordSet)
+    sumOfDecryptedList = sum(candiateList)
     
     print "Suspected key: ", [chr(number) for number in key]
     print "Sum of ASCII in Decrypted Text: ", sumOfDecryptedList
