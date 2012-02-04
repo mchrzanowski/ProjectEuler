@@ -27,8 +27,8 @@ class Problem081 {
 
 	def findSmallestSum(): Int = {
 		
-		for (row <- 0 to matrix.length - 1){
-			for (column <- 0 to matrix.length - 1){
+		for (row <- 0 until matrix.length){
+			for (column <- 0 until matrix.length){
 
 				if (row > 0 && column > 0){
 					matrix(row)(column) += math.min(matrix(row - 1)(column), matrix(row)(column - 1))
@@ -49,10 +49,10 @@ class Problem081 {
 	def readInFile(): Unit = {
 		val iterator = Source.fromFile(Problem081.file).getLines()
 
-		for (row <- 0 to matrix.length - 1){
+		for (row <- 0 until matrix.length){
 			val newLine = iterator.next()
 			val numbers = newLine.split(",")
-			for (column <- 0 to matrix.length - 1){
+			for (column <- 0 until matrix.length){
 				matrix(row)(column) = numbers(column).toInt
 			}
 		}
