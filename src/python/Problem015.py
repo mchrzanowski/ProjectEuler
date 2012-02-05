@@ -4,27 +4,29 @@ Created on Jan 8, 2012
 @author: mchrzanowski
 '''
 
+from time import time
+
 totalPaths = 0
 END = 21
 
 def main():
 # initialization.
-    matrix = [[0 for j in range(END)] for i in range(END)]
-    for i in range(END):
+    start = time()
+    matrix = [[0 for j in xrange(END)] for i in xrange(END)]
+    for i in xrange(END):
         matrix[i][0] = matrix[0][i] = 1
    
     findPathsMemoized(matrix)
     print "Total Paths: ", matrix[END-1][END-1]
+    end = time()
+    print "Runtime: ", end - start, " seconds."
 
 
 # dynamic programming FTW.
 def findPathsMemoized(matrix):
-    for i in range(1, END):
-        for j in range(1, END):
-            accumulator = matrix[i-1][j]
-            if j - 1 >= 0:
-                accumulator = accumulator + matrix[i][j-1]
-            matrix[i][j] = accumulator
+    for i in xrange(1, END):
+        for j in xrange(1, END):
+            matrix[i][j] =  matrix[i][j-1] +  matrix[i-1][j]
 
 
 # SO. SLOW. OMG.
