@@ -8,7 +8,7 @@ import os.path
 from time import time
 
 def generateCommonWords():
-    wordFile = open(os.path.join(os.curdir,'./requiredFiles/MostCommonEnglishWords.txt'), 'r')
+    wordFile = open(os.path.join(os.curdir,'./requiredFiles/Problem059MostCommonEnglishWords.txt'), 'r')
         
     for word in wordFile: 
         yield word.rstrip('\n')
