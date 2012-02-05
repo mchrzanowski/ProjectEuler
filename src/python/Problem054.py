@@ -196,6 +196,8 @@ def checkHighValueToTieBreak(firstHand, secondHand, ignoreList):
     if firstNumber > secondNumber:
         return True
         
+        
+
 def doesFirstHandWin(firstDict, secondDict, firstHand, secondHand):
     
     if max(firstDict) > max(secondDict):
@@ -204,11 +206,13 @@ def doesFirstHandWin(firstDict, secondDict, firstHand, secondHand):
     elif max(firstDict) == max(secondDict):
         
         maxNumber = max(firstDict)
-                        
-        # 2 is a special case as that's where you can have two pairs.
+                                
+        # doesContainTwoPairs is a special case as that's where you can have two pairs.
         # so for that one, just check which result is greater
-        if maxNumber == 2:
-            
+        checkForTwoPairTest = lambda i: evaluationDict[i] == doesContainTwoPairs
+        
+        if checkForTwoPairTest(maxNumber):
+                        
             # is the first greater?
             if cardNumberToArrayDict[firstDict[maxNumber][1]] > cardNumberToArrayDict[secondDict[maxNumber][1]]:
                 return True
