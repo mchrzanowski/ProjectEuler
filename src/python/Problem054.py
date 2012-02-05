@@ -24,6 +24,7 @@ def doesContainRoyalFlush(hand):
     return False
 
 def getHighestCardInHand(hand, ignoreSpecificCardNumbers = False):
+    ''' ignore whatever values are in the passed list '''
     for i in xrange(len(arrayToCardNumberDict) - 1, -1, -1):
         for j in xrange(len(suitToArrayDict)):
             if hand[i][j] == 1:
