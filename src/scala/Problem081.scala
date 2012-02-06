@@ -5,15 +5,16 @@ import java.io.File
 object Problem081 {
 	
 	private val SIZE = 80
-	private val file = new File(new File("./requiredFiles/").getCanonicalPath(), "Problem081Matrix.txt")
+	private val file = new File(new File("./requiredFiles/").getCanonicalPath, "Problem081Matrix.txt")
 
 	def main(args: Array[String]){
-		val start = System.currentTimeMillis();
+		
+		val start = System.currentTimeMillis
 		
 		val problem =  new Problem081
 		problem.readInFile()
 		val smallestSumAfterTraversal = problem.findSmallestSum()
-		val end = System.currentTimeMillis();
+		val end = System.currentTimeMillis
 		
 		println("Smallest sum: " + smallestSumAfterTraversal)
 		println("Runtime: " + (end - start) + " milliseconds.")
@@ -59,3 +60,4 @@ class Problem081 {
 	}
 
 }
+
