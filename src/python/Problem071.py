@@ -21,7 +21,7 @@ def main():
     for denominator in xrange(1, LIMIT + 1):
         for numerator in xrange(3 * denominator / 7, 3 * denominator / 7 + 1):
             newFraction = Fraction(numerator, denominator)
-            if newFraction < ceiling and newFraction > highestFraction:
+            if newFraction != ceiling and newFraction > highestFraction:
                 highestFraction = newFraction
                 
         
