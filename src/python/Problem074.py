@@ -35,9 +35,9 @@ def main():
             newNumber = str(sum([factorialDict[char] for char in currentTerm]))
             
             if newNumber in termDict:
-                numberOfTerms = len(termSet) + termDict[newNumber]
+                numberOfTerms += termDict[newNumber]
                 break
-            
+ 
             if newNumber not in termSet:
                 termSet.add(newNumber)
                 numberOfTerms += 1
