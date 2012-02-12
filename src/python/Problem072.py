@@ -4,7 +4,6 @@ Created on Feb 11, 2012
 @author: mchrzanowski
 '''
 
-from fractions import gcd
 from ProjectEulerPrime import ProjectEulerPrime
 from time import time
 
