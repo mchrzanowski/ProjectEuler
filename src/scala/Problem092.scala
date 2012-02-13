@@ -12,10 +12,9 @@ object Problem092 {
 
         var solutions = 0
         
-        for (i <- 1 until Limit){
+        for (i <- 1 until Limit)
             if(sumNumbers(i, i, map) == 89)
                 solutions += 1
-        }
         
         println("Number of numbers that sum to 89 <= " + Limit + " : " + solutions)
         
