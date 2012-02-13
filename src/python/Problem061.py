@@ -16,8 +16,7 @@ def find_cyclic_numbers(listDict):
         cyclicalSet = set([number])
         
         for result in generate_cyclical_set(listDict, keysLeft, number, cyclicalSet):
-            if result is not None:
-                return result
+            return result
                 
         
 def generate_cyclical_set(listDict, keysLeft, numberToCheckAgainst, cyclicalSet):
@@ -39,18 +38,13 @@ def generate_cyclical_set(listDict, keysLeft, numberToCheckAgainst, cyclicalSet)
                 newSet.add(number)
                 
                 for result in generate_cyclical_set(listDict, newKeySet, number, newSet):
-                    if result is not None:
-                        yield result
+                    yield result
 
     
-    if len(keysLeft) > 0:
-        yield None
-    
-    else:
+    if len(keysLeft) ==  0:
         if full_cyclicality_check(cyclicalSet):
             yield cyclicalSet
-        else:
-            yield None
+
 
 def full_cyclicality_check(possibleCyclicalSet):
     ''' each number's first and last halves must be present
