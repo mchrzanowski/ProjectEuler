@@ -13,7 +13,7 @@ object Problem092 {
         var solutions = 0
         
         for (i <- 1 until Limit)
-            if(sumNumbers(i, i, map) == 89)
+            if(sumNumbers(i, map) == 89)
                 solutions += 1
         
         println("Number of numbers that sum to 89 <= " + Limit + " : " + solutions)
@@ -22,20 +22,23 @@ object Problem092 {
         println("Runtime: " + (end - start) + " ms.")
     }
 
-    def sumNumbers(i: Int, originalNumber: Int, map: HashMap[Int, Int]): Int = {
+    def sumNumbers(i: Int, map: HashMap[Int, Int]): Int = {
         
         val summation = i.toString.map(char => (char.toInt - '0') * (char.toInt - '0')).sum
 
         if (summation == 89 || summation == 1){
-            map.put(originalNumber, summation)
+            map.put(i, summation)
             summation
         }
 
         else if (map.contains(summation))
             map.getOrElse(summation, 0)
 
-        else 
-            sumNumbers(summation, originalNumber, map)
+        else {
+            val result = sumNumbers(summation, map)
+            map.put(summation, result)
+            result
+        }
     }
 
 }
