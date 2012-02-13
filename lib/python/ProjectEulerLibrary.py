@@ -53,7 +53,7 @@ def isNumberPalindromic(number):
             return True
     return False
 
-def isNumberPandigital(number, lastNumberToVerify = 9, includeZero = False):
+def isNumberPandigital(number, lastNumberToVerify=9, includeZero=False):
     ''' check if number is pandigital '''
     
     numberLimit = lastNumberToVerify
@@ -81,18 +81,33 @@ def isNumberPandigital(number, lastNumberToVerify = 9, includeZero = False):
     else:
         return False
     
-def generatePentagonalNumbers(numberLimit, startingNumber = 1):
+def generatePentagonalNumbers(numberLimit, startingNumber=1):
     ''' generator that produces pentagonal numbers for 1..numberLimit '''
     for i in xrange(startingNumber, numberLimit + 1):
         yield i * (3 * i - 1) / 2    
 
-def generateHexagonalNumbers(numberLimit, startingNumber = 1):
+def generateHexagonalNumbers(numberLimit, startingNumber=1):
     ''' generator that produces hexagonal numbers for 1..numberLimit '''
     for i in xrange(startingNumber, numberLimit + 1):
         yield i * (2 * i - 1)
         
-def generateTriangleNumbers(numberLimit, startingNumber = 1): 
+def generateTriangleNumbers(numberLimit, startingNumber=1): 
     ''' generator that produces triangle numbers for 1..numberLimit '''
     for i in xrange(startingNumber, numberLimit + 1):
-        yield i * (i + 1) / 2    
-    
+        yield i * (i + 1) / 2   
+
+def generateOctagonalNumbers(numberLimit, startingNumber=1):
+    ''' generator that produces octagonal numbers for 1..numberLimit '''
+    for i in xrange(startingNumber, numberLimit + 1):
+        yield i * (3 * i - 2)
+
+def generateHeptagonalNumbers(numberLimit, startingNumber=1):
+    ''' generator that produces heptagonal numbers for 1..numberLimit '''
+    for i in xrange(startingNumber, numberLimit + 1):
+        yield i * (5 * i - 3) / 2
+
+def generateSquareNumbers(numberLimit, startingNumber=1):
+    ''' generator that produces square numbers for 1..numberLimit '''
+    for i in xrange(startingNumber, numberLimit + 1):
+        yield i ** 2
+
