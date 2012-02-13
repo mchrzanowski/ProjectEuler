@@ -36,7 +36,8 @@ object Problem092 {
 
         else {
             val result = sumNumbers(summation, map)
-            map.put(summation, result)
+            if (! map.contains(summation))
+                map.put(summation, result)
             result
         }
     }
