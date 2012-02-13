@@ -32,9 +32,8 @@ object Problem092 {
             summation
         }
 
-        else if (map.contains(summation)){
+        else if (map.contains(summation))
             map.getOrElse(summation, 0)
-        }
 
         else 
             sumNumbers(summation, originalNumber, map)
