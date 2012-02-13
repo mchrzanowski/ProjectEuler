@@ -26,18 +26,15 @@ object Problem092 {
         
         val summation = i.toString.map(char => (char.toInt - '0') * (char.toInt - '0')).sum
 
-        if (summation == 89 || summation == 1){
-            map.put(i, summation)
+        if (summation == 89 || summation == 1)
             summation
-        }
 
         else if (map.contains(summation))
             map.getOrElse(summation, 0)
 
         else {
             val result = sumNumbers(summation, map)
-            if (! map.contains(summation))
-                map.put(summation, result)
+            map.put(summation, result)
             result
         }
     }
