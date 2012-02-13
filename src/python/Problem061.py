@@ -9,9 +9,9 @@ from time import time
 
 def find_cyclic_numbers(listDict):
     
-    for number in listDict[3]:
+    for number in listDict[8]:  # pick a list to be our driver. might as well be the smallest one.
                 
-        keysLeft = set([key for key in listDict if key != 3])
+        keysLeft = set([key for key in listDict if key != 8])
         
         cyclicalSet = set([number])
         
@@ -53,11 +53,14 @@ def generate_cyclical_set(listDict, keysLeft, numberToCheckAgainst, cyclicalSet)
             yield None
 
 def full_cyclicality_check(possibleCyclicalSet):
+    ''' each number's first and last halves must be present
+    in other numbers of the set. so just loop through the set 
+    with at most two sub loops to do the verification.'''
     
     isSetAFullCycle = True
     
     for possibleCyclicalNumber in possibleCyclicalSet:
-        # two checks: first and last components for each number
+
         isFirstHalfGood = False
         isSecondHalfGood = False
             
@@ -85,6 +88,7 @@ def full_cyclicality_check(possibleCyclicalSet):
         
     if isSetAFullCycle:
         return True
+    
     else:
         return False
             
@@ -103,8 +107,7 @@ def main():
     listDict[6] = [tuple([str(number)[:2], str(number)[2:]]) for number in ProjectEulerLibrary.generateHexagonalNumbers(LIMIT) if number <= END_LIMIT and number > START_LIMIT]
     listDict[7] = [tuple([str(number)[:2], str(number)[2:]]) for number in ProjectEulerLibrary.generateHeptagonalNumbers(LIMIT) if number <= END_LIMIT and number > START_LIMIT]
     listDict[8] = [tuple([str(number)[:2], str(number)[2:]]) for number in ProjectEulerLibrary.generateOctagonalNumbers(LIMIT) if number <= END_LIMIT and number > START_LIMIT]
-            
-            
+        
     cyclicalSet =  find_cyclic_numbers(listDict)
     
     
