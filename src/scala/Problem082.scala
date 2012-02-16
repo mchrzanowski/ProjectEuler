@@ -71,13 +71,12 @@ object Problem082 {
             }
 
             // now take the minimum between the two possibilities.
-            for (column <- 0 until matrix.length)
-                matrix(row)(column) = math.min(downAndRightSums(column), downAndLeftSums(column))
+            matrix(row) = (0 until matrix.length).map(column => math.min(downAndRightSums(column), downAndLeftSums(column))).toArray
         }
 
         // sum downward as we never have to move horizontally on the last row.
-        for (column <- 0 until matrix.length)
-            matrix(matrix.length - 1)(column) += matrix(matrix.length - 2)(column)
+        matrix(matrix.length - 1) =  (0 until matrix.length).map(column => matrix(matrix.length - 1)(column) + 
+                                                                matrix(matrix.length - 2)(column)).toArray
 
         matrix(matrix.length - 1).min
 
