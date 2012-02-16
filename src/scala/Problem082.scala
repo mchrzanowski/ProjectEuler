@@ -3,32 +3,44 @@ import scala.math
 import java.io.File
 
 object Problem082 {
-    
+
     private val Size = 80
     private val file = new File(new File("./requiredFiles/").getCanonicalPath, "Problem082Matrix.txt")
 
     def main(args: Array[String]){
         
         val start = System.currentTimeMillis
+                
+        val smallestSumAfterTraversal = findSmallestSum(readInTransposedMatrix())
         
-        val problem =  new Problem082
-
-        problem.readInFileToTransposedMatrix()
-        
-        val smallestSumAfterTraversal = problem.findSmallestSum()
         val end = System.currentTimeMillis
         
         println("Smallest sum: " + smallestSumAfterTraversal)
         println("Runtime: " + (end - start) + " milliseconds.")
     }
 
-}
+    /*
+        We're going to read in the matrix in transposed so that we can work with 
+        it in traditional (row, column) format. this alters the question from 
+        allowing up, down, and right movement to allowing left, right, and down movement.
+    */
+    def readInTransposedMatrix(): Array[Array[Int]]= {
 
-class Problem082 {
+        val matrix = Array.ofDim[Int](Problem082.Size, Problem082.Size)
+        val iterator = Source.fromFile(Problem082.file).getLines()
 
-    val matrix = Array.ofDim[Int](Problem082.Size, Problem082.Size)
+        for (row <- 0 until matrix.length){
+            val newLine = iterator.next()
+            val numbers = newLine.split(",")
+            for (column <- 0 until matrix.length){
+                matrix(column)(row) = numbers(column).toInt
+            }
+        }
 
-    def findSmallestSum(): Int = {
+        matrix
+    }
+
+    def findSmallestSum(matrix: Array[Array[Int]]): Int = {
         
         // the first row can be completely skipped as we can start at any point there.
         // the last row is a special case as it just requires a downward summation.
@@ -65,27 +77,10 @@ class Problem082 {
 
         // sum downward as we never have to move horizontally on the last row.
         for (column <- 0 until matrix.length)
-            matrix(Problem082.Size - 1)(column) += matrix(Problem082.Size - 2)(column)
+            matrix(matrix.length - 1)(column) += matrix(matrix.length - 2)(column)
 
-        matrix(Problem082.Size - 1).min
+        matrix(matrix.length - 1).min
 
-    }
-
-    /*
-        We're going to read in the matrix in transposed so that we can work with 
-        it in traditional (row, column) format. this alters the question from 
-        allowing up, down, and right movement to allowing left, right, and down movement.
-    */
-    def readInFileToTransposedMatrix(): Unit = {
-        val iterator = Source.fromFile(Problem082.file).getLines()
-
-        for (row <- 0 until matrix.length){
-            val newLine = iterator.next()
-            val numbers = newLine.split(",")
-            for (column <- 0 until matrix.length){
-                matrix(column)(row) = numbers(column).toInt
-            }
-        }
     }
 
 }
