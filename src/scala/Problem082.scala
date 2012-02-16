@@ -46,7 +46,7 @@ class Problem082 {
                     downAndRightSums(column) += matrix(row - 1)(column)
             }
             
-            // now, a leftward and downward summation. let downAndLeft store the minimum at each juncture.
+            // now, a leftward and downward summation.
             val downAndLeftSums = Array.ofDim[Int](matrix(row).length)
             
             Array.copy(matrix(row), 0, downAndLeftSums, 0, matrix(row).length)
