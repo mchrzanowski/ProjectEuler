@@ -31,19 +31,20 @@ class Problem081 {
 		for (row <- 0 until matrix.length){
 			for (column <- 0 until matrix.length){
 
-				if (row > 0 && column > 0){
-					matrix(row)(column) += math.min(matrix(row - 1)(column), matrix(row)(column - 1))
+				if (row > 0){
+					if (column > 0)
+						matrix(row)(column) += math.min(matrix(row - 1)(column), matrix(row)(column - 1))
+					else
+						matrix(row)(column) += matrix(row - 1)(column)
 				}
-				else if (row == 0 && column > 0){
-					matrix(row)(column) +=  matrix(row)(column - 1)
-				}
-				else if (row != 0 && column == 0){
-					matrix(row)(column) += matrix(row)(column) + matrix(row - 1)(column)
+				else {
+					if (column > 0)
+						matrix(row)(column) += matrix(row)(column - 1)
 				}
 			}
 		}
 
-		return matrix(Problem081.SIZE - 1)(Problem081.SIZE - 1)
+		matrix(Problem081.SIZE - 1)(Problem081.SIZE - 1)
 	}
 
 
