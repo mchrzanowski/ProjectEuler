@@ -34,7 +34,7 @@ class Problem082 {
         // the last row is a special case as it just requires a downward summation.
         for (row <- 1 until matrix.length - 1){
 
-            val downAndRightSums = Array.ofDim[Int](matrix.length)
+            val downAndRightSums = Array.ofDim[Int](matrix(row).length)
 
             Array.copy(matrix(row), 0, downAndRightSums, 0, matrix(row).length)
 
@@ -47,7 +47,7 @@ class Problem082 {
             }
             
             // now, a leftward and downward summation. let downAndLeft store the minimum at each juncture.
-            val downAndLeftSums = Array.ofDim[Int](Problem082.Size)
+            val downAndLeftSums = Array.ofDim[Int](matrix(row).length)
             
             Array.copy(matrix(row), 0, downAndLeftSums, 0, matrix(row).length)
             
