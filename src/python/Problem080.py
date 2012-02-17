@@ -13,7 +13,7 @@ LIMIT = 10 ** 2
 
 def sumUpDigits(number):
     
-    getcontext().prec = 102
+    getcontext().prec = LIMIT + len(str(int(sqrt(LIMIT))))
     
     root = Decimal(number).sqrt()
     
