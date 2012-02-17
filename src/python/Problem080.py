@@ -13,18 +13,18 @@ LIMIT = 10 ** 2
 
 def sumUpDigits(number):
     
-    getcontext().prec = LIMIT + len(str(int(sqrt(LIMIT))))
+    getcontext().prec = LIMIT + 2
     
     root = Decimal(number).sqrt()
     
     if root // 1 == root:
         return 0
-    
+        
     sumOfDigits = int(root)
     
     root -= int(root)    
     
-    for digit in str(root)[2 : LIMIT + 2 - len(str(sumOfDigits))]:
+    for digit in str(root)[2 : LIMIT + 1]:
         sumOfDigits += int(digit)
         
     return sumOfDigits
