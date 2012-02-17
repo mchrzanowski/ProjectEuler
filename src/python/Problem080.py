@@ -24,7 +24,7 @@ def sumUpDigits(number):
     
     root -= int(root)    
     
-    for digit in str(root)[2 : LIMIT + 1]:
+    for digit in str(root)[2 : LIMIT + 2 - len(str(sumOfDigits))]:
         sumOfDigits += int(digit)
         
     return sumOfDigits
