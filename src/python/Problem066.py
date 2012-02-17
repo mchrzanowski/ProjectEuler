@@ -11,7 +11,7 @@ from time import time
 LIMIT = 10 ** 4
 
 # ericn's solution from the project euler forums (http://projecteuler.net/thread=64;page=5)
-# is much, much more efficient than mine.
+# is much, much more efficient than mine and is derived from what looks like the same source.
 def hasOddPeriod(number):
     
     root = sqrt(number)
@@ -19,7 +19,7 @@ def hasOddPeriod(number):
     if root.is_integer():
         return False
     
-    quotients = -1
+    quotients = -1  # skip the first number.
     
     numbersSeen = set()
     
@@ -35,9 +35,9 @@ def hasOddPeriod(number):
         quotients += 1
         
         sqrtSubtractor = denominator * newQuotient - sqrtSubtractor
-        
+
         denominator = (number - sqrtSubtractor ** 2) / denominator
-        
+
         newQuotient = (int(root) + sqrtSubtractor) / denominator
         
         state = sqrtSubtractor, denominator, newQuotient
