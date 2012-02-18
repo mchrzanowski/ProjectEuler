@@ -31,7 +31,7 @@ def checkForPrimes(min, max):
                     break
     return maxA, maxB, maxPrimes            
     
-
+# from: http://www.daniweb.com/software-development/python/code/216880
 def isPrime(n):
     '''check if integer n is a prime'''
     # make sure n is a positive integer
