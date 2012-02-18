@@ -11,7 +11,7 @@ LIMIT = 10 ** 2     # the answer is bound to be pretty square-like as that provi
                     # opportunities to form rectangles while adding very few additional blocks.
                     # and so we can avoid the extremes. 
                     # through numerical analysis, we see that it's very easy to hit 2 million;
-                    # at row 100, we go past 2 million in first 35 rows. so a 100 * 100 grid is sufficient.
+                    # at row 100, we go past 2 million in first 20 or so rows. so a 100 * 100 grid is more than sufficient.
 def main():
     
     start = time()
