@@ -38,7 +38,7 @@ def main():
                 else:
                     solutionSet.add(resultingSum)
                     
-    print "Number of sums formed from squared, cubed, and fourthed primes that are < ",LIMIT, " : ", len(solutionSet)
+    print "Number of sums formed from squared, cubed, and fourthed primes that are <= ",LIMIT, " : ", len(solutionSet)
     end = time()
     print "Runtime: ", end - start, " seconds."
     
