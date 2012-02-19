@@ -17,9 +17,9 @@ def main():
     
     solutionSet = set([])
     
-    squareList = [int(number) ** 2 for number in xrange(2, int(LIMIT ** 0.5) + 1) if primeObject.isPrime(number)]
-    cubeList = [int(number) ** 3 for number in xrange(2, int(LIMIT ** (1./3)) + 1) if primeObject.isPrime(number)]
-    fourthList = [int(number) ** 4 for number in xrange(2, int(LIMIT ** (1./4)) + 1) if primeObject.isPrime(number)]
+    squareList = [number ** 2 for number in xrange(2, int(LIMIT ** 0.5) + 1) if primeObject.isPrime(number)]
+    cubeList = [number ** 3 for number in xrange(2, int(LIMIT ** (1./3)) + 1) if primeObject.isPrime(number)]
+    fourthList = [number ** 4 for number in xrange(2, int(LIMIT ** (1./4)) + 1) if primeObject.isPrime(number)]
     
     for square in squareList:
         
