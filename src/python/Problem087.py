@@ -25,20 +25,20 @@ def main():
         
         for cube in cubeList:
             
-            if square + cube > LIMIT:
+            if square + cube >= LIMIT:
                 break
             
             for fourth in fourthList:
                 
                 resultingSum = square + cube + fourth
                 
-                if resultingSum > LIMIT:
+                if resultingSum >= LIMIT:
                     break
                 
                 else:
                     solutionSet.add(resultingSum)
                     
-    print "Number of sums formed from squared, cubed, and fourthed primes that are <= ",LIMIT, " : ", len(solutionSet)
+    print "Number of sums formed from squared, cubed, and fourthed primes that are < ",LIMIT, " : ", len(solutionSet)
     end = time()
     print "Runtime: ", end - start, " seconds."
     
