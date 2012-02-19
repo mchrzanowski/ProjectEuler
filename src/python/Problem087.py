@@ -5,7 +5,6 @@ Created on Feb 19, 2012
 '''
 
 from ProjectEulerPrime import ProjectEulerPrime
-from math import sqrt
 from time import time
 
 LIMIT = 5 * 10 ** 7
