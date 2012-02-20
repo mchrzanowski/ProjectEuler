@@ -19,7 +19,7 @@ def main():
     we use efficient modular exponentiation to do this.
     essentially, there are several highly efficient ways 
     of computing (a ^ b) mod n. Python just so happens to use 
-    one of these efficient methods in its b
+    one of these efficient methods in its built-in pow() function.
     http://en.wikipedia.org/wiki/Modular_exponentiation
     '''
     residual = A
