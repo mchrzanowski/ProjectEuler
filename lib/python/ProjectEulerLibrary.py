@@ -112,11 +112,10 @@ def generateSquareNumbers(numberLimit, startingNumber=1):
     for i in xrange(startingNumber, numberLimit + 1):
         yield i ** 2
 
-def phi(number):
+def phi(number, primeObject=ProjectEulerPrime()):
     ''' return totient(n). this is a naive implementation. look at problem 72 for an efficient way to do this 
     for multiple numbers you want phi() for.
      '''
     result = number
-    primeObject = ProjectEulerPrime()
     for prime in frozenset(primeObject.factorize(number)): result *= 1 - float(1) / prime
     return int(result)
