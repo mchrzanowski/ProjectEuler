@@ -4,6 +4,7 @@ Created on Jan 19, 2012
 @author: mchrzanowski
 '''
 
+from ProjectEulerPrime import ProjectEulerPrime
 import sys
 
 def getListOfPrimes(numberOfPrimesToGet):
@@ -111,3 +112,11 @@ def generateSquareNumbers(numberLimit, startingNumber=1):
     for i in xrange(startingNumber, numberLimit + 1):
         yield i ** 2
 
+def phi(number):
+    ''' return totient(n). this is a naive implementation. look at problem 72 for an efficient way to do this 
+    for multiple numbers you want phi() for.
+     '''
+    result = number
+    primeObject = ProjectEulerPrime()
+    for prime in frozenset(primeObject.factorize(number)): result *= 1 - float(1) / prime
+    return int(result)
