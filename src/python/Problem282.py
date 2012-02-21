@@ -80,13 +80,14 @@ def ackermann(number, modulo, phiModulo, powDict):
         # exponentiation. 1 knuth arrow.
         return pow(A, number + 3, modulo) - 3
 
+    # from here on out, we use Euler's Theorem to collapse the power towers.
     elif number == 4:
         
         residual = tetration(A, number + 2, phiModulo, powDict)
         return pow(A, residual, modulo) - 3
     
     elif number == 5:
-        
+
         residual =  pentation(A, number + 3, modulo, phiModulo, powDict)
         return pow(A, residual, modulo) - 3
                 
