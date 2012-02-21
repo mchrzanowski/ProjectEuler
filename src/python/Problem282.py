@@ -80,7 +80,8 @@ def ackermann(number, modulo, phiModulo, powDict):
         # exponentiation. 1 knuth arrow.
         return pow(A, number + 3, modulo) - 3
 
-    # from here on out, we use Euler's Theorem to collapse the power towers.
+    # from here on out, we use the fact that x ^ y mod n == x ^ (y mod phi(n)) mod n
+    # to reduce the power towers.
     elif number == 4:
         
         residual = tetration(A, number + 2, phiModulo, powDict)
