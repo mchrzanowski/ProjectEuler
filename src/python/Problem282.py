@@ -94,7 +94,7 @@ def ackermann(number, modulo, phiModulo, powDict):
                 
     elif number == 6:
                 
-        # heptation. 4 (omg..) knuth arrows.
+        # hextation. 4 (omg..) knuth arrows.
         powerTower = pentation(A, number + 3, modulo, phiModulo, powDict)
                 
         residual = A
