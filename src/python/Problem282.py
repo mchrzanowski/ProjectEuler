@@ -31,34 +31,32 @@ def main():
 def tetration(A, B, modulus, powDict):
     
     # tetration. 2 knuth arrows.
-    residual = A
-    
-    for i in xrange(B - 1):
-        if residual not in powDict:
-            newResidual = pow(A, residual, modulus)
-            powDict[residual] = newResidual
-            residual = newResidual
-        else:
-            residual = powDict[residual] 
-    
-    return residual
+    return loop_through_power_tower(A, A, B - 1, modulus, powDict)
 
 def pentation(A, B, modulo, phiModulo, powDict):
     
     # pentation. 3 arrows.
     powerTower = tetration(A, B - 1, phiModulo, powDict)
     
-    residual = A
-    for j in xrange(powerTower - 2): 
-        if residual not in powDict:
-            newResidual = pow(A, residual, phiModulo)
-            powDict[residual] = newResidual
+    return loop_through_power_tower(A, A, powerTower - 2, phiModulo, powDict)
+
+# incorporating a suggestion by zwuupeape 
+# in http://projecteuler.net/thread=282
+# to simply check if we've hit a period. if so, we can stop calculating the rest of 
+# the power tower prematurely
+def loop_through_power_tower(A, residual, iterations, modulo, memoizeDict):
+    previous = residual
+    for i in xrange(iterations): 
+        if residual not in memoizeDict:
+            newResidual = pow(A, residual, modulo)
+            memoizeDict[residual] = newResidual
             residual = newResidual
         else:
-            residual = powDict[residual] 
-    
+            residual = memoizeDict[residual]
+        if residual == previous: break       # find out if we hit a period.
+        previous = residual
     return residual
-
+    
 def ackermann(number, modulo, phiModulo, powDict):
     
     A = 2
@@ -96,16 +94,8 @@ def ackermann(number, modulo, phiModulo, powDict):
                 
         # hextation. 4 (omg..) knuth arrows.
         powerTower = pentation(A, number + 3, modulo, phiModulo, powDict)
-                
-        residual = A
         
-        for i in xrange(powerTower - 3): 
-            if residual not in powDict:
-                newResidual = pow(A, residual, phiModulo)
-                powDict[residual] = newResidual
-                residual = newResidual
-            else:
-                residual = powDict[residual]
+        residual = loop_through_power_tower(A, A, powerTower - 3, phiModulo, powDict)
         
         return pow(A, residual, modulo) - 3
     
