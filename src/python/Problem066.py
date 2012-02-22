@@ -14,7 +14,10 @@ LIMIT = 10 ** 3
 
 
 def main():
-    ''' here we use two methods from previous problems:
+    ''' 
+    http://en.wikipedia.org/wiki/Pell's_equation
+    
+    here we use two methods from previous problems:
     Problem064 dealt with getting the list of quotients for use in the continued fraction
     Problem065 then dealt with constructing the continued fraction from these quotients
     '''
