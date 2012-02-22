@@ -24,7 +24,7 @@ def findRationalApproximation(quotients):
         numeratorDict[expansion] = quotients[expansion] * numeratorDict[expansion - 1] + numeratorDict[expansion - 2]
         denominatorDict[expansion] = quotients[expansion] * denominatorDict[expansion - 1] + denominatorDict[expansion - 2]
     
-    return tuple([numeratorDict[len(quotients) - 1], denominatorDict[len(quotients) - 1]])
+    return tuple([numeratorDict, denominatorDict])
 
 LIMIT = 100
 def main():
@@ -42,8 +42,7 @@ def main():
     # then, we use the continued fraction formula that we used in problem 57
     rationalApproximation = findRationalApproximation(eQuotientList[:LIMIT])
     
-    print "We got: ", rationalApproximation
-    print "Sum of digits of the 100th rational approximation's numerator: ", sum([int(char) for char in str(rationalApproximation[0])])
+    print "Sum of digits of the 100th rational approximation's numerator: ", sum([ int(char) for char in str(rationalApproximation[0][LIMIT - 1]) ])
     end = time()
     print "Runtime: ", end - start, " seconds."
     

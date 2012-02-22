@@ -12,14 +12,14 @@ LIMIT = 10 ** 4
 
 # ericn's solution from the project euler forums (http://projecteuler.net/thread=64;page=5)
 # is much, much more efficient than mine and is derived from what looks like the same source.
-def hasOddPeriod(number):
+def getQuotients(number):
     
     root = sqrt(number)
     
     if root.is_integer():
-        return False
+        return []
     
-    quotients = -1  # skip the first number.
+    quotients = []  # skip the first number.
     
     numbersSeen = set()
     
@@ -32,7 +32,7 @@ def hasOddPeriod(number):
         
         numbersSeen.add(state)
         
-        quotients += 1
+        quotients.append(newQuotient)
         
         sqrtSubtractor = denominator * newQuotient - sqrtSubtractor
 
@@ -41,11 +41,16 @@ def hasOddPeriod(number):
         newQuotient = (int(root) + sqrtSubtractor) / denominator
         
         state = sqrtSubtractor, denominator, newQuotient
-        
-    if quotients & 1 == 1:
-        return True
     
-    return False
+    return quotients
+
+
+def hasOddPeriod(number):
+    
+    quotientList = getQuotients(number)
+
+    if len(quotientList) > 0 and len(quotientList) - 1 & 1 == 1:
+        return True
 
 # my method. REALLY slow because of the floating number precision required.
 # algo derived from:
