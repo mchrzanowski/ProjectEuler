@@ -27,7 +27,7 @@ def sieveOfEratosthenes(number, storedList=[]):
     
         for i in xrange(2, int(sqrt(number)) + 1):
             if storedList[i] == 1: continue
-            currentValue = i + i
+            currentValue = i ** 2
             while currentValue < len(storedList):
                 storedList[currentValue] = 1
                 currentValue += i
