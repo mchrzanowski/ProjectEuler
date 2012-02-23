@@ -11,6 +11,8 @@ LIMIT = 10 ** 8
 
 ''' naive implementation of the prime counting function'''
 def pi(number, storedList=[]):
+    
+    number = int(number)
             
     if len(storedList) < number:
         
