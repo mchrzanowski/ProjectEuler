@@ -9,18 +9,19 @@ from time import time
 
 LIMIT = 10 ** 8
 
-''' naitve implementation of the prime counting function'''
+''' naive implementation of the prime counting function'''
 def pi(number, storedList=[]):
             
     if len(storedList) < number:
         
-        storedList[:] = [] 
+        del storedList[:]
         
         storedList.extend([0 for number in xrange(number + 1)])
     
         storedList[0] = storedList[1] = 1
     
         for i in xrange(2, int(sqrt(number)) + 1):
+            if storedList[i] == 1: continue
             currentValue = i + i
             while currentValue < len(storedList):
                 storedList[currentValue] = 1
