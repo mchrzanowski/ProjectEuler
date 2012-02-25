@@ -3,7 +3,7 @@ object Problem078 {
 
     val ModValue = 1000000
 
-    val ArraySize = 60000
+    val ArraySize = 60000    // found through trial and error.
 
     def main(args:Array[String]) = {
 

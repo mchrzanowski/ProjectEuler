@@ -7,7 +7,7 @@ Created on Feb 24, 2012
 from time import time
 
 SUM_LIMIT = 10 ** 6
-LIMIT = 6 * 10 ** 4
+LIMIT = 6 * 10 ** 4     # found through trial and error
 
 def main():
     numberOfWays = [0 for i in xrange(LIMIT + 1)]
@@ -19,11 +19,8 @@ def main():
     for i in xrange(1, LIMIT + 1):
                 
         for j in xrange(i, LIMIT + 1): 
-#            x, y = divmod(numberOfWays[j] + numberOfWays[j - i], SUM_LIMIT)            
             numberOfWays[j]  = divmod(numberOfWays[j] + numberOfWays[j - i], SUM_LIMIT) [1]
-            
-        print i," : ",numberOfWays[i]
-            
+                    
         if numberOfWays[i] == 0:
             solution = i
             break
