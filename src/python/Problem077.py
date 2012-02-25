@@ -33,7 +33,7 @@ def main():
             solution = i
             break
     
-    print "First number to be summable", SUM_LIMIT, "different ways using primes:", solution 
+    print "First number to be produced", SUM_LIMIT, "different ways using sums of primes:", solution 
 
 if __name__ == '__main__':
     start = time()
