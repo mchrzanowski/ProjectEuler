@@ -9,15 +9,13 @@ from ProjectEulerPrime import ProjectEulerPrime
 import sys
 
 
-''' naive implementation of the prime counting function'''
 def pi(number):
-    
+    ''' naive implementation of the prime counting function'''
     return len(sieveOfEratosthenes(number))
 
 
-''' naive implementation of sieve algo '''
 def sieveOfEratosthenes(number, storedList=[]):
-    
+    ''' naive implementation of sieve algo '''
     if len(storedList) < number:
         
         del storedList[:]
