@@ -4,48 +4,36 @@ Created on Jan 19, 2012
 @author: mchrzanowski
 '''
 
+from math import sqrt
 from ProjectEulerPrime import ProjectEulerPrime
 import sys
 
-def getListOfPrimes(numberOfPrimesToGet):
-    ''' get a list of primes of length numberOfPrimesToGet '''
-    primeList = []
+
+''' naive implementation of the prime counting function'''
+def pi(number):
     
-    if numberOfPrimesToGet <= 0:
-        return primeList
+    return len(sieveOfEratosthenes(number))
+
+
+''' naive implementation of sieve algo '''
+def sieveOfEratosthenes(number, storedList=[]):
     
-    primeList.append(2)     # numberOfPrimesToGet has to be at least 1 at this point.
+    if len(storedList) < number:
+        
+        del storedList[:]
+        
+        storedList.extend([0 for number in xrange(number + 1)])
     
-    candidate = 3
-    while len(primeList) != numberOfPrimesToGet :
-        if isPrime(candidate):
-            primeList.append(candidate)
-        candidate += 2
+        storedList[0] = storedList[1] = 1
     
-    return primeList
-    
-def isPrime(n):
-    '''
-    check if integer n is a prime
-    from: http://www.daniweb.com/software-development/python/code/216880
-    '''
-    # make sure n is a positive integer
-    n = abs(int(n))
-    # 0 and 1 are not primes
-    if n < 2:
-        return False
-    # 2 is the only even prime number
-    if n == 2: 
-        return True    
-    # all other even numbers are not primes
-    if not n & 1: 
-        return False
-    # range starts with 3 and only needs to go up the squareroot of n
-    # for all odd numbers
-    for x in range(3, int(n ** 0.5) + 1, 2):
-        if n % x == 0:
-            return False
-    return True
+        for i in xrange(2, int(sqrt(number)) + 1):
+            if storedList[i] == 1: continue
+            currentValue = i ** 2
+            while currentValue < len(storedList):
+                storedList[currentValue] = 1
+                currentValue += i
+        
+    return [number for number in xrange(number + 1) if storedList[number] == 0]
 
 def isNumberPalindromic(number):
     ''' check if number is a palindrome '''
