@@ -5,7 +5,7 @@ Created on Mar 2, 2012
 '''
 
 from fractions import gcd
-from math import sqrt
+from math import ceil, sqrt
 from time import time
 
 LIMIT = 15 * 10 ** 5
@@ -26,8 +26,11 @@ def main():
     uniqueSums = set([])
     duplicateSums = set([])
     
-    # since sum = 2 * m ** 2 + 2 * m * n, an upper bound is maxSum ** 0.5 / (2 ** 0.5)
-    for m in xrange(2, int(sqrt(LIMIT) / sqrt(2)) + 1):  
+    # since sum = 2 * m ** 2 + 2 * m * n, where n = [1, m]
+    # for max m, we solve 2 * m ** 2 + 2 * m - Limit = 0
+    mCeiling = int(ceil(-0.5 + (4 + 8 * LIMIT) ** 0.5 / 4))
+    
+    for m in xrange(2, mCeiling + 1):  
         
         for n in xrange(1, m):
             
