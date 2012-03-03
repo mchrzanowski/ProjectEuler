@@ -5,6 +5,7 @@ Created on Mar 2, 2012
 '''
 
 from fractions import gcd
+from math import sqrt
 from time import time
 
 LIMIT = 15 * 10 ** 5
@@ -25,8 +26,8 @@ def main():
     uniqueSums = set([])
     duplicateSums = set([])
     
-    
-    for m in xrange(2, int(LIMIT ** 0.5) + 1):  # since c = m ** 2 + n ** 2, a loose upper bound is maxSum ** 0.5
+    # since sum = 2 * m ** 2 + 2 * m * n, an upper bound is maxSum ** 0.5 / (2 ** 0.5)
+    for m in xrange(2, int(sqrt(LIMIT) / sqrt(2)) + 1):  
         
         for n in xrange(1, m):
             
