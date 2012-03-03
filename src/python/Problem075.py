@@ -26,7 +26,7 @@ def main():
     uniqueSums = set([])
     duplicateSums = set([])
     
-    # since sum = 2 * m ** 2 + 2 * m * n, where n = [1, m]
+    # since sum = 2 * m ** 2 + 2 * m * n, where n = [1, m)
     # for max m, we solve 2 * m ** 2 + 2 * m - Limit = 0
     mCeiling = int(ceil(-0.5 + (4 + 8 * LIMIT) ** 0.5 / 4))
     
