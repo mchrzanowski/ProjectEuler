@@ -56,7 +56,7 @@ def main():
                 
                 k += 1
     
-    print "Solutions:", len(uniqueSums)
+    print "Wire lengths that produce exactly one integer sided right triangle:", len(uniqueSums)
 
 if __name__ == '__main__':
     start = time()
