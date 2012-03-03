@@ -26,7 +26,7 @@ def main():
     duplicateSums = set([])
     
     
-    for m in xrange(2, int(LIMIT ** 0.5) + 1):  # since c = m ** 2 + n ** 2, a loose upper bound is (a + b + c) ** 0.5
+    for m in xrange(2, int(LIMIT ** 0.5) + 1):  # since c = m ** 2 + n ** 2, a loose upper bound is maxSum ** 0.5
         
         for n in xrange(1, m):
             
