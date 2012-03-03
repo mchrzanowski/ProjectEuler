@@ -94,7 +94,7 @@ def correctConcatLengthPurge(solutionDict):
             if len(''.join([str(number) for number in numberList])) != SOLUTION_SIZE:
                 solutionDict[key].remove(sequenceCollection)    
 
-def constructSolutionString(sequenceCollection, joinPoints, resultList=[]):
+def constructSolutionString(sequenceCollection, joinPoints, resultList=None):
     '''
     the algorithm here exploits the fact that in a legal ring, for a given sequence,
     one number will be the outlier and the other two values will be join points. 
@@ -110,7 +110,8 @@ def constructSolutionString(sequenceCollection, joinPoints, resultList=[]):
     ''' 
     sequenceCollection = set(sequenceCollection)
     
-    if len(resultList) == 0:    # find the smallest outlier.
+    if resultList is None:    # find the smallest outlier.
+        resultList = []
         lowestOutlier = NUMBER_LIMIT + 1
         for sequence in sequenceCollection:
             for number in sequence:
@@ -134,9 +135,7 @@ def constructSolutionString(sequenceCollection, joinPoints, resultList=[]):
         return constructSolutionString(sequenceCollection, joinPoints, resultList)
         
     elif len(sequenceCollection) == 0:
-        listToReturn = list(resultList)
-        del resultList[:]   # remove the method's state.
-        return listToReturn
+        return resultList
     
     else:  
         # the last element of resultList *must* be the middle value of another 3-pair list.
