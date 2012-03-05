@@ -23,13 +23,6 @@ def readInMatrices(fileName):
             
     return matrixCollection
 
-def copyMatrix(matrixToCopy):
-    ''' deep copy of a matrix '''
-    newMatrix = []
-    for row in xrange(len(matrixToCopy)):
-        newMatrix.append(list(matrixToCopy[row]))
-    return newMatrix
-
 def isColumnStillUnique(colToCheck, matrix):
     ''' check a row for non-DEFAULT duplicates '''
     seen = set([])
@@ -52,7 +45,6 @@ def isBoxStillUnique(boxToCheck, matrix):
             elif matrix[row][col] != DEFAULT:
                 return False
     return True
-    
 
 def isRowStillUnique(rowToCheck, matrix):
     ''' check if a given row contains no duplicates except the DEFAULT case '''
@@ -89,22 +81,22 @@ def solveSudoku(matrix):
                     isColumnStillUnique(j, matrix) and           \
                     isBoxStillUnique(getBoxNumber(i, j), matrix):
                         
-                        newMatrix = copyMatrix(matrix)
-                        returnValue = solveSudoku(newMatrix)
-                        
-                        if returnValue is not False:
-                            return returnValue
-                
+                        if solveSudoku(matrix) is True:
+                            return True
+
+                # we have looped through all candidates. 
+                # reset this matrix cell and backtrack.
+                matrix[i][j] = DEFAULT
                 return False
     
-    return matrix        
+    return True        
          
 def main():
     matrixCollection = readInMatrices('./requiredFiles/Problem096Matrices.txt')
     topOfMatrices = []
     for matrix in matrixCollection:
-        solvedMatrix = solveSudoku(matrix)
-        topOfMatrices.append(int(''.join([str(number) for number in solvedMatrix[0][0:3]])))
+        solveSudoku(matrix)
+        topOfMatrices.append(int(''.join([str(number) for number in matrix[0][0:3]])))
     
     print "Solution:", sum(topOfMatrices)
 
