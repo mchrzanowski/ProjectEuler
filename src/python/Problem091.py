@@ -13,6 +13,8 @@ def main():
     # brute force out way through this
     solutions = 0
     
+    usedPointCollection = set([])
+    
     origin = (0, 0)
     
     # create first point from the origin.
@@ -25,13 +27,18 @@ def main():
             
             # first leg distance. don't square to avoid errors.
             firstLeg = xFirst ** 2 + yFirst ** 2
+            
+            # firstPoints in this set can't be repeated by the (x,y)Second loops
+            usedPointCollection.add(firstPoint)
                         
             for xSecond in xrange(0, LIMIT + 1):
                 for ySecond in xrange(0, LIMIT + 1):
                     
                     secondPoint = (xSecond, ySecond)
                     
-                    if secondPoint == origin or secondPoint == firstPoint: continue
+                    if secondPoint == origin: continue
+                                        
+                    if secondPoint in usedPointCollection: continue
                                                             
                     # second and third legs                
                     secondLeg = (xSecond - xFirst) ** 2 + (ySecond - yFirst) ** 2
@@ -43,8 +50,9 @@ def main():
                     or thirdLeg + firstLeg == secondLeg     \
                     or thirdLeg + secondLeg == firstLeg:
                         solutions += 1
+                        
                             
-    print "Solutions: ", solutions / 2  # as the algo iterates over the grid once per grid point, we double counted.
+    print "Solutions: ", solutions
 
 if __name__ == '__main__':
     start = time()
