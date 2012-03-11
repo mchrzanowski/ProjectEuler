@@ -18,7 +18,7 @@ def getConvergentPair(i, difference=1):
     quotientList = getQuotients(i)      # get the quotient list. this method will only return up to one full period. 
                                         # we might need more to get convergence, though.
     
-    convergentState = 0                 # expansion of the quotient list causes some state to be reset.
+    convergentState = -1                # expansion of the quotient list causes some state to be reset.
                                         # save state because we don't want to send convergents that we've already sent     
     while True:
     
@@ -26,11 +26,11 @@ def getConvergentPair(i, difference=1):
         
         numerators, denominators = findRationalApproximation(quotientList)  # indexed numerator, denominator dicts
         
-        for j in xrange(convergentState, len(numerators) - 1):   # these dicts are weirdly indexed; they begin at -1.
+        for j in xrange(convergentState + 1, len(numerators) - 1):   # these dicts are weirdly indexed; they begin at -1.
             
             if numerators[j] ** 2 - i * denominators[j] ** 2 == difference:
                 yield numerators[j], denominators[j]
-                convergentState = j + 1
+                convergentState = j
 
 def main():
     ''' 
@@ -40,7 +40,6 @@ def main():
     Problem064 dealt with getting the list of quotients for use in the continued fraction
     Problem065 then dealt with constructing the continued fraction from these quotients
     '''
-    start = time()
     
     maxD = 0
     maxX = 0
@@ -58,8 +57,8 @@ def main():
 
     print "D <=", LIMIT, "that maximizes x:", maxD
     
+if __name__ == '__main__':
+    start = time()
+    main()
     end = time()
     print "Runtime: ", end - start, " seconds."
-
-if __name__ == '__main__':
-    main()
