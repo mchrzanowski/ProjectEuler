@@ -14,7 +14,7 @@ LIMIT = 10 ** 3
 
 def getConvergentPair(i, difference=1):
     ''' a generator that will return iterations of increasingly-precise numerator,denominator tuples
-    of the irrational number i '''
+    of sqrt(i) '''
     quotientList = getQuotients(i)      # get the quotient list. this method will only return up to one full period. 
                                         # we might need more to get convergence, though.
     

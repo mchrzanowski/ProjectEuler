@@ -34,12 +34,12 @@ def main():
     http://www.johnsasser.com/pdf/article15.pdf
     '''
     
-    IRRATIONAL_NUMBER = 2
+    D = 2               # where D : x ** 2 - D * y ** 2 == -1
     LIMIT = 10 ** 12
     
     solution = 0
     
-    convergentFunction = getConvergentPair(IRRATIONAL_NUMBER, -1)
+    convergentFunction = getConvergentPair(D, -1)
         
     while solution == 0:
         numerator, denominator = convergentFunction.next()
