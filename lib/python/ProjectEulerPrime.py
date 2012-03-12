@@ -15,8 +15,8 @@ class ProjectEulerPrime(Prime):
         Prime.__init__(self)
     
     def isPrime(self, n):
-        n = long(n)
-        if n < 2L:
+        n = int(n)
+        if n < 2:
         	return False
         elif not Prime.factor(self, n):
             return True

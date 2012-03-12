@@ -44,14 +44,14 @@ class Prime:
 # - - -   _ _ i n i t _ _   - - -
 
     def __init__ ( self ):
-        self._p     =  [ 2L, 3L, 5L ]
-        self._pMax  =  6L
+        self._p     =  [2, 3, 5]
+        self._pMax  =  6
 
 
 # - - -   f a c t o r   - - -
 
     def factor ( self, n ):
-        """ [ if n is a positive long integer ->
+        """ [ if n is a positive integer ->
                 if n is prime ->
                   return None
                 else ->
@@ -65,13 +65,13 @@ class Prime:
         """
 
         #-- 1 --
-        if  n < 4L:
+        if  n < 4:
             return None
 
         #-- 2 --
         #-[ limit  :=  the largest integer <= floor(sqrt(n))
         #-]
-        limit  =  long ( sqrt ( float ( n ) ) )
+        limit  =  int ( sqrt ( float ( n ) ) )
 
         #-- 3 --
         #-[ self._p     :=  self._p with all necessary values
@@ -94,7 +94,7 @@ class Prime:
             #     return f
             #   else -> I
             #-]
-            if  ( n % f ) == 0L:
+            if  ( n % f ) == 0:
                 return f
             elif  f >= limit:
                 break
@@ -106,7 +106,7 @@ class Prime:
 # - - -   . _ f i l l   - - -
 
     def _fill ( self, limit ):
-        """ [ if limit is a positive long integer ->
+        """ [ if limit is a positive integer ->
                 if self._pMax >= limit -> I
                 else ->
                   self._p     :=  self._p with all primes P added
@@ -126,7 +126,7 @@ class Prime:
         # at 2 + the last element of self._p.  We can't use a
         # `for' loop here because xrange() doesn't handle longs.
         #--
-        i  =  self._p[-1] + 2L
+        i  =  self._p[-1] + 2
 
         #-- 3 --
         #-[ self._p  :=  self._p with all primes P added
@@ -142,7 +142,7 @@ class Prime:
             #     i = i + 2L
             #-]
             if  not self.factor ( i ):
-                self._p.append ( long(i) )
+                self._p.append ( int(i) )
 
             i = i + 2L
 
@@ -152,7 +152,7 @@ class Prime:
 # - - -   . f a c t o r i z e   - - -
 
     def factorize ( self, n ):
-        """ [ if n is a positive long integer ->
+        """ [ if n is a positive integer ->
                 return a list of the prime factors of n, excluding 1,
                 and including n iff n is prime
             ]
@@ -163,7 +163,7 @@ class Prime:
         #   else ->
         #     f0  :=  the smallest prime factor in n
         #-]
-        n   =  long(n)      # Permit calling with normal integers
+        n   =  int(n)      # Permit calling with normal integers
         f0  =  self.factor ( n )
 
         #-- 2 --
