@@ -144,7 +144,7 @@ class Prime:
             if  not self.factor ( i ):
                 self._p.append ( int(i) )
 
-            i = i + 2L
+            i = i + 2
 
         #-- 4 --
         self._pMax  =  limit
