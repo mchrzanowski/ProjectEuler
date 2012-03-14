@@ -3,11 +3,8 @@
 # Written by John W. Shipman (john@nmt.edu), New Mexico Tech
 # Computer Center, Socorro, NM 87801
 #--
-# $Revision: 1.7 $
-# $Date: 1997/06/05 23:59:04 $
-#--
 
-from math import *
+from math import sqrt
 
 class Prime:
     """ Object for testing long integers for primality.

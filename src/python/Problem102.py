@@ -34,14 +34,14 @@ def isPointInsideTriangle(triangle, point):
     http://en.wikipedia.org/wiki/Barycentric_coordinates_%28mathematics%29
     '''
     # calculate vectors from the differences of the vertices and the point from a common source.
-    v0 = (triangle[0][0] - triangle[1][0], triangle[0][1] - triangle[1][1])
-    v1 = (triangle[2][0] - triangle[1][0], triangle[2][1] - triangle[1][1])
-    v2 = (point[0] - triangle[1][0], point[1] - triangle[1][1])
+    vectorDifference = lambda u, v: map(lambda x1, x2: x1 - x2, u, v)
+
+    v0 = vectorDifference(triangle[0], triangle[1])
+    v1 = vectorDifference(triangle[2], triangle[1])
+    v2 = vectorDifference(point, triangle[1])
     
-    # take the dot products
-    def dotProduct(u, v):
-        if len(u) != len(v): raise Exception("the first vector's length (",len(u),") != second vector's length (",len(v),")")
-        return sum([u[i] * v[i] for i in xrange(len(u))])
+    # take the dot products    
+    dotProduct = lambda u, v: sum([u[i] * v[i] for i in xrange(len(u))])
     
     dot00 = dotProduct(v0, v0)
     dot01 = dotProduct(v0, v1)
