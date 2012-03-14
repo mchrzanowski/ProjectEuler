@@ -41,10 +41,7 @@ def isPointInsideTriangle(triangle, point):
     # take the dot products
     def dotProduct(u, v):
         if len(u) != len(v): raise Exception("the first vector's length (",len(u),") != second vector's length (",len(v),")")
-        summation = 0
-        for i in xrange(len(u)):
-            summation += u[i] * v[i]
-        return summation
+        return sum([u[i] * v[i] for i in xrange(len(u))])
     
     dot00 = dotProduct(v0, v0)
     dot01 = dotProduct(v0, v1)
