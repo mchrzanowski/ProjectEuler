@@ -9,7 +9,7 @@ def main():
     
     LIMIT = 0.99
     
-    iteration = 101
+    iteration = 101         # 101 is the first bouncy number
     bouncies = 0
     
     while float(bouncies) / iteration != LIMIT:
