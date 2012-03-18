@@ -4,10 +4,9 @@ Created on Mar 17, 2012
 @author: mchrzanowski
 '''
 
-from ProjectEulerPrime import ProjectEulerPrime
 from operator import mul
+from ProjectEulerPrime import ProjectEulerPrime
 from time import time
-
 
 def getSortedValue(iteration, radDict):
     ''' 
