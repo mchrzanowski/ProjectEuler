@@ -11,10 +11,10 @@ def main():
     ''' 
     this was solved purely through empirical analysis.
     the largest mod value for primes was found through the formula:
-        lastValue * i + i
-    where lastValue is just a counter that starts at 1 for 3.
+        incrementor * i + i
+    where incrementor is just a counter that starts at 1 for 3.
     for even numbers, it turned out to be:
-        lastValue * i
+        incrementor * i
     and odd composites, strangely:
         i * (i - 1)
     '''
@@ -24,20 +24,20 @@ def main():
     
     solutions = 0
     
-    lastValue = 1
+    incrementor = 1
     
     for i in xrange(3, LIMIT + 1):
         
         if p.isPrime(i):
-            solutions += lastValue * i + i
+            solutions += incrementor * i + i
             
         elif i & 1 == 0:
-            solutions += lastValue * i
+            solutions += incrementor * i
             
         else:
             solutions += i * (i - 1)
             
-        lastValue += 1
+        incrementor += 1
     
     print "Solutions:", solutions
 
