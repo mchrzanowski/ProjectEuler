@@ -28,7 +28,7 @@ def getNumberOfDivisors(factors):
 
     divisorNumber = 1
     for prime in frequencyDict:
-        divisorNumber *= (2 * frequencyDict[prime] + 1)     # factorization of (n ** 2) = (factorization of n) * 2
+        divisorNumber *= (2 * frequencyDict[prime] + 1)     # factorization of (n ** 2) = double of factorization of n
         
     return (divisorNumber - 1) / 2
 
