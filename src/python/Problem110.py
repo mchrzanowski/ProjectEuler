@@ -33,8 +33,12 @@ def getNumberOfDivisors(factors):
     return (divisorNumber - 1) / 2
 
 def getUniqueFactorization(n, p=ProjectEulerPrime()):
-    '''  return a list of unique primes whose divisor number is >= n '''
-    if n < 2: return []
+    '''  
+    return the prime factorization of a number with a divisor number that's >= n .
+    the prime factorization must have no duplicates. 
+    '''
+    
+    if n < 1: return []
     factors = [2]
     iteration = 1
 
