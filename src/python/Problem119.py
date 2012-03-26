@@ -12,7 +12,7 @@ def main():
     LIMIT = 30
     POW_LIMIT = 30
     
-    sumDigitsInNumber = lambda x: sum([int(number) for number in str(x)])
+    sumDigitsInNumber = lambda number: sum([int(digit) for digit in str(number)])
     
     solutions = set()
     
