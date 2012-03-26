@@ -8,7 +8,7 @@ from time import time
 
 def main():
     
-    iteration = 2
+    baseNumber = 2
     LIMIT = 30
     POW_LIMIT = 30
     
@@ -21,14 +21,14 @@ def main():
         power = 2
         while power < POW_LIMIT:        # without a theoretical ceiling that limits the max power, we 
                                         # just assume that this is a sufficiently high ceiling to use.
-            result = iteration ** power            
-            if sumDigitsInNumber(result) == iteration:
+            result = baseNumber ** power            
+            if sumDigitsInNumber(result) == baseNumber:
                 solutions.add(result)
-#                print iteration, power, value
+#                print baseNumber, power, result
             
             power += 1
         
-        iteration += 1
+        baseNumber += 1
             
     print "A_%d: %d" % (LIMIT, sorted(list(solutions))[LIMIT - 1])
         
