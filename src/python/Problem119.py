@@ -9,19 +9,19 @@ from time import time
 def main():
     
     baseNumber = 2
-    LIMIT = 30
-    POW_LIMIT = 30
+    LIMIT = POW_LIMIT = 30
     
     sumDigitsInNumber = lambda number: sum([int(digit) for digit in str(number)])
     
     solutions = set()
     
-    while len(solutions) < 2 * LIMIT:   # we go over what we need as there might be results created from
-                                        # smaller powers of larger numbers. we'll need to sort...
+    while len(solutions) < 2 * LIMIT:       # we go over what we need as there might be results created from
+                                            # smaller powers of larger numbers. we'll need to sort...
         power = 2
-        while power < POW_LIMIT:        # without a theoretical ceiling that limits the max power, we 
-                                        # just assume that this is a sufficiently high ceiling to use.
-            result = baseNumber ** power            
+        while power < POW_LIMIT:            # without a theoretical ceiling that limits the max power, we 
+                                            # just assume that this is a sufficiently high ceiling to use.
+            result = baseNumber ** power    # empirically, the value we're interested in in raised to much lower power
+                                            # than its enumeration        
             if sumDigitsInNumber(result) == baseNumber:
                 solutions.add(result)
 #                print baseNumber, power, result
