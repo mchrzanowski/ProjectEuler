@@ -7,7 +7,7 @@ Created on Mar 31, 2012
 from time import time
 
 def main():
-    # found through trial and error.
+    # found by writing out all possibilities for small n using pencil and paper.
     # red_n = red_n-1 + red_n-2 + 1
     # green_n = green_n-1 + green_n-3 + 1
     # blue_n = blue_n-1 + blue_n-4 + 1
