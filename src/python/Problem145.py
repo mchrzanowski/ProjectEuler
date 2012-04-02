@@ -20,7 +20,7 @@ def numberHasOnlyOddDigits(n):
 
 def main():
         
-    reversibleNumbers = set()
+    reversibleNumbers = 0
         
     for i in xrange(1, 10 ** 8, 2):     # one of the two numbers must be odd. so skip even n.
                 
@@ -29,10 +29,9 @@ def main():
         reversedNumber = int(str(i)[::-1])
                 
         if numberHasOnlyOddDigits(i + reversedNumber):
-            reversibleNumbers.add(i)
-            reversibleNumbers.add(reversedNumber)
+            reversibleNumbers += 2
     
-    print "Solutions: ", len(reversibleNumbers)
+    print "Solutions: ", reversibleNumbers
 
 if __name__ == '__main__':
     start = time()
