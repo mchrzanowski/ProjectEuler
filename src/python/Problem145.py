@@ -25,6 +25,8 @@ def main():
     for i in xrange(1, 10 ** 8, 2):     # one of the two numbers must be odd. so skip even n.
                 
         if i % 10 == 0: continue
+
+        if i >= 10 ** 4 and i < 10 ** 5: continue   # no reversible numbers exist in this range
         
         reversedNumber = int(str(i)[::-1])
                 
