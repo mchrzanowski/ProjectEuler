@@ -22,22 +22,15 @@ def main():
         
     reversibleNumbers = set()
         
-    for i in xrange(1, 10 ** 8):
-        
-        if i in reversibleNumbers: continue
-        
-#        if numberHasOnlyOddDigits(i): continue
-
+    for i in xrange(1, 10 ** 8, 2):     # one of the two numbers must be odd. so skip even n.
+                
         if i % 10 == 0: continue
         
-        reversedNumber = str(i)[::-1]
-        
-        result = i + int(reversedNumber)
-        
-        if numberHasOnlyOddDigits(result):
-#            print i, reversedNumber, result
+        reversedNumber = int(str(i)[::-1])
+                
+        if numberHasOnlyOddDigits(i + reversedNumber):
             reversibleNumbers.add(i)
-            reversibleNumbers.add(int(reversedNumber))
+            reversibleNumbers.add(reversedNumber)
     
     print "Solutions: ", len(reversibleNumbers)
 
