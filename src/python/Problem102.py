@@ -5,6 +5,7 @@ Created on Mar 13, 2012
 '''
 
 import os.path
+from itertools import izip
 from time import time
 
 def loadTriangles(fileName):
@@ -25,8 +26,8 @@ def loadTriangles(fileName):
 
 def isPointInsideTriangle(triangle, point):
     ''' 
-    calculate the barycentric coordinates of the origin relative to the triangle vertices.
-    if all three coordinates sum to > 1 or if any barycentric coordinate is < 0, then the point
+    calculate the barycentric coordinates of the point passed in relative to the triangle vertices.
+    if all three coordinates sum to >= 1 or if any barycentric coordinate is < 0, then the point
     doesn't fall in the triangle area.
     http://www.blackpawn.com/texts/pointinpoly/default.html
     http://en.wikipedia.org/wiki/Barycentric_coordinates_%28mathematics%29
@@ -39,7 +40,7 @@ def isPointInsideTriangle(triangle, point):
     v2 = vectorDifference(point, triangle[1])
     
     # take the dot products    
-    dotProduct = lambda u, v: sum([u[i] * v[i] for i in xrange(len(u))])
+    dotProduct = lambda u, v: sum(x * y for x, y in izip(u,v))
     
     dot00 = dotProduct(v0, v0)
     dot01 = dotProduct(v0, v1)
@@ -60,7 +61,8 @@ def main():
     solutions = 0
     triangles = loadTriangles(os.path.join(os.curdir, './requiredFiles/Problem102Triangles.txt'))
     for triangle in triangles:
-        if isPointInsideTriangle(triangle, ORIGIN): solutions += 1
+        if isPointInsideTriangle(triangle, ORIGIN): 
+            solutions += 1
     
     print "Solutions:", solutions
 
