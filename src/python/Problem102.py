@@ -19,8 +19,8 @@ def loadTriangles(fileName):
     triangles = set([])
     for line in open(fileName):
         points = line.strip("\n\r").split(",")
-        triangle = tuple([ (int(x), int(y)) for x, y in getNumbersInPairs(points) ])
-        triangles.add(tuple(triangle))
+        triangle = tuple((int(x), int(y)) for x, y in getNumbersInPairs(points))
+        triangles.add(triangle)
         
     return triangles    
 
