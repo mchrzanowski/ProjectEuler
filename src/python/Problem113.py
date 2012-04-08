@@ -31,10 +31,10 @@ def calculateUniqueNumbersInOneDirection(limit, goingForward):
     the basic idea here is that for a number that is n digits long,
     the number of bouncies is a function of the number of bouncies for numbers n - 1 digits long.
     the numbers that we look at that are n - 1 digits long depend on whether we are going forward or not
-    this means that we are at most keeping track of bouncy numbers based on their starting digit.
+    this means that we are keeping track of bouncy numbers based on their starting digit.
     
     if we're going forward, we care about the bouncies for all n - 1 digits that started with a number ge to a given value from 1-9
-    if backwards, we care about all bounces that started with a number le to a given value.
+    if backwards, we care about all bounces that started with a number le to a given value from 0 - 9 (zero has no place in increasing bouncies)
     '''
     
     def getDefaults():
