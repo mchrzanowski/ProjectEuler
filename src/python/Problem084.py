@@ -11,7 +11,7 @@ def roll(sides):
     ''' return an integer of [0, sides - 1] + 1 '''
     return int(uniform(0, sides)) + 1
 
-def getClosestRailRoad(currentPosition, gameSquareMap):
+def getClosestNextRailRoad(currentPosition, gameSquareMap):
     
     if currentPosition == gameSquareMap['CH1']:
         return gameSquareMap['R2']
@@ -25,7 +25,7 @@ def getClosestRailRoad(currentPosition, gameSquareMap):
     else: 
         raise Exception("No RR Found for ", currentPosition) 
     
-def getClosestUtility(currentPosition, gameSquareMap):
+def getClosestNextUtility(currentPosition, gameSquareMap):
     
     if currentPosition == gameSquareMap['CH1']:
         return gameSquareMap['U1']
@@ -72,9 +72,9 @@ def getCHCard(currentPosition, gameSquareMap, numberOfGameSquares, valuesToCareA
     elif nextCard ==  valuesToCareAbout['R1']:
         return gameSquareMap['R1']
     elif nextCard == valuesToCareAbout['R2'] or nextCard == valuesToCareAbout['R3']:
-        return getClosestRailRoad(currentPosition, gameSquareMap)
+        return getClosestNextRailRoad(currentPosition, gameSquareMap)
     elif nextCard ==  valuesToCareAbout['U']:
-        return getClosestUtility(currentPosition, gameSquareMap)
+        return getClosestNextUtility(currentPosition, gameSquareMap)
     elif nextCard ==  valuesToCareAbout['BACK']:
         return (currentPosition - 3) % numberOfGameSquares
     else:
