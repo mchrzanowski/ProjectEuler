@@ -4,6 +4,7 @@ Created on Apr 12, 2012
 @author: mchrzanowski
 '''
 
+from collections import deque
 from random import shuffle, uniform
 from time import time
 
@@ -11,53 +12,45 @@ def roll(sides):
     ''' return an integer of [0, sides - 1] + 1 '''
     return int(uniform(0, sides)) + 1
 
-def getClosestNextRailRoad(currentPosition, gameSquareMap):
+def getClosestNextLocation(currentPosition, locationsToGoTo, numberOfGameSquares):
+    ''' 
+    find the closest next point to go to based on the current position. 
+    method will automatically loop to position zero once the end of the game board is reached 
+    '''
+    minMovement = numberOfGameSquares + 1
+    travelPoint = None
     
-    if currentPosition == gameSquareMap['CH1']:
-        return gameSquareMap['R2']
-    
-    elif currentPosition == gameSquareMap['CH2']:
-        return gameSquareMap['R3']
-    
-    elif currentPosition == gameSquareMap['CH3']:
-        return gameSquareMap['R1'] 
-    
-    else: 
-        raise Exception("No RR Found for ", currentPosition) 
-    
-def getClosestNextUtility(currentPosition, gameSquareMap):
-    
-    if currentPosition == gameSquareMap['CH1']:
-        return gameSquareMap['U1']
-    
-    elif currentPosition == gameSquareMap['CH2']:
-        return gameSquareMap['U2']
-    
-    elif currentPosition == gameSquareMap['CH3']:
-        return gameSquareMap['U1']
-    
-    else:
-        raise Exception("No Utility Found for ", currentPosition) 
+    for location in locationsToGoTo:
+        if location < currentPosition:  # we need to loop.
+            movement = numberOfGameSquares - currentPosition + location
+        else:
+            movement = location - currentPosition
+            
+        if movement < minMovement:
+            minMovement = movement
+            travelPoint = location
 
+    return travelPoint
 
-def getCHCard(currentPosition, gameSquareMap, numberOfGameSquares, valuesToCareAbout={}, cards=[]):
-    
+def getCHCard(currentPosition, gameSquareMap, GAME_SQUARES, CH_CARDS=16, valuesToCareAbout={}, cards=deque()):
+    ''' like the getCCCard method, but slightly more verbose owing to a greater number of important cards. '''
     if len(cards) == 0:
-        for i in xrange(16): cards.append(i)
+        for i in xrange(CH_CARDS): cards.append(i)
         shuffle(cards)
-        valuesToCareAbout['GO'] = 1
-        valuesToCareAbout['JAIL'] = 2
-        valuesToCareAbout['C1'] = 3
-        valuesToCareAbout['E3'] = 4 
-        valuesToCareAbout['H2'] = 5 
-        valuesToCareAbout['R1'] = 6 
-        valuesToCareAbout['R2'] = 7 
-        valuesToCareAbout['R3'] = 8 
-        valuesToCareAbout['U'] =  9 
-        valuesToCareAbout['BACK'] = 10
+        if CH_CARDS < 10: raise Exception(CH_CARDS , "<", 10, ". Increase it!")
+        valuesToCareAbout['GO'] = 0
+        valuesToCareAbout['JAIL'] = 1
+        valuesToCareAbout['C1'] = 2
+        valuesToCareAbout['E3'] = 3 
+        valuesToCareAbout['H2'] = 4 
+        valuesToCareAbout['R1'] = 5 
+        valuesToCareAbout['R2'] = 6 
+        valuesToCareAbout['R3'] = 7 
+        valuesToCareAbout['U'] =  8 
+        valuesToCareAbout['BACK'] = 9
     
-    nextCard = cards.pop()
-    cards.insert(0, nextCard)       # place in back
+    nextCard = cards.popleft()
+    cards.append(nextCard)       # place in back
     
     if nextCard == valuesToCareAbout['GO']:
         return gameSquareMap['GO']
@@ -72,24 +65,28 @@ def getCHCard(currentPosition, gameSquareMap, numberOfGameSquares, valuesToCareA
     elif nextCard ==  valuesToCareAbout['R1']:
         return gameSquareMap['R1']
     elif nextCard == valuesToCareAbout['R2'] or nextCard == valuesToCareAbout['R3']:
-        return getClosestNextRailRoad(currentPosition, gameSquareMap)
+        return getClosestNextLocation(currentPosition, gameSquareMap['R'], GAME_SQUARES)
     elif nextCard ==  valuesToCareAbout['U']:
-        return getClosestNextUtility(currentPosition, gameSquareMap)
+        return getClosestNextLocation(currentPosition, gameSquareMap['U'], GAME_SQUARES)
     elif nextCard ==  valuesToCareAbout['BACK']:
-        return (currentPosition - 3) % numberOfGameSquares
+        return (currentPosition - 3) % GAME_SQUARES
     else:
         return currentPosition
 
-def getCCCard(currentPosition, gameSquareMap, valuesToCareAbout={}, cards=[]):
-    
+def getCCCard(currentPosition, gameSquareMap, CC_CARDS=16, valuesToCareAbout={}, cards=deque()):
+    ''' 
+        two CC cards matter of the (by default) 16 cards: advance to GO or to JAIL.
+        create a randomized queue of cards, and then pop/push cards from the front to the back 
+    '''
     if len(cards) == 0:
-        for i in xrange(16): cards.append(i)
+        for i in xrange(CC_CARDS): cards.append(i)
         shuffle(cards)
-        valuesToCareAbout['GO'] = 12
-        valuesToCareAbout['JAIL'] = 3
+        if CC_CARDS < 2: raise Exception(CC_CARDS , "<", 2, ". Increase it!")
+        valuesToCareAbout['GO'] = 0
+        valuesToCareAbout['JAIL'] = 1
     
-    nextCard = cards.pop()
-    cards.insert(0, nextCard)       # place in back
+    nextCard = cards.popleft()
+    cards.append(nextCard)       # place in back
     
     if nextCard == valuesToCareAbout['GO']:
         return gameSquareMap['GO']
@@ -133,10 +130,13 @@ def getImportantGameSquareLocations():
 
 def main():
     
+    # my first probabilistic problem in PE.
+    # run through ITERATIONS different turns to determine 
+    # the frequency of landing on a given square.
+    
     DIE_SIDES = 4
     GAME_SQUARES = 40
-    
-    ITERATIONS = 10 ** 7
+    ITERATIONS = 10 ** 8
     ROLLS_TO_GO_TO_JAIL = 3
     
     gameSquareMap = getImportantGameSquareLocations()
