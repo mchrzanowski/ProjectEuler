@@ -2,6 +2,8 @@
 Created on Apr 12, 2012
 
 @author: mchrzanowski
+
+* USE PYPY ONLY*
 '''
 
 from collections import deque
