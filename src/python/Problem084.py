@@ -166,14 +166,14 @@ def main():
         if place == gameSquareMap['G2J']:
             place = gameSquareMap['JAIL'] 
         
-        # Community Chance cards have a 10 / 16 chance of landing elsewhere.
+        # Chance cards have a chance of landing elsewhere.
         elif place in gameSquareMap['CH']:
             place = getCHCard(place, gameSquareMap, GAME_SQUARES)
         
         # evaluate this outside of the if / else block above
         # as there's a chance of landing on a CC square
         # from one of the CH squares.
-        # CC Cards have a 2 / 16 chance of landing elsewhere.
+        # Community Chest cards have a chance of landing elsewhere.
         if place in gameSquareMap['CC']:
             place = getCCCard(place, gameSquareMap)
                     
