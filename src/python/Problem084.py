@@ -37,9 +37,9 @@ def getClosestNextLocation(currentPosition, locationsToGoTo, numberOfGameSquares
 def getCHCard(currentPosition, gameSquareMap, GAME_SQUARES, CH_CARDS=16, valuesToCareAbout={}, cards=deque()):
     ''' like the getCCCard method, but slightly more verbose owing to a greater number of important cards. '''
     if len(cards) == 0:
-        for i in xrange(CH_CARDS): cards.append(i)
+        for i in xrange(CH_CARDS): 
+            cards.append(i)
         shuffle(cards)
-        if CH_CARDS < 10: raise Exception(CH_CARDS , "<", 10, ". Increase it!")
         valuesToCareAbout['GO'] = 0
         valuesToCareAbout['JAIL'] = 1
         valuesToCareAbout['C1'] = 2
@@ -50,6 +50,9 @@ def getCHCard(currentPosition, gameSquareMap, GAME_SQUARES, CH_CARDS=16, valuesT
         valuesToCareAbout['R3'] = 7 
         valuesToCareAbout['U'] =  8 
         valuesToCareAbout['BACK'] = 9
+        if CH_CARDS < len(valuesToCareAbout): 
+            raise Exception(CH_CARDS , "<", len(valuesToCareAbout), ". Increase it!")
+
     
     nextCard = cards.popleft()
     cards.append(nextCard)       # place in back
@@ -81,12 +84,14 @@ def getCCCard(currentPosition, gameSquareMap, CC_CARDS=16, valuesToCareAbout={},
         create a randomized queue of cards, and then pop/push cards from the front to the back 
     '''
     if len(cards) == 0:
-        for i in xrange(CC_CARDS): cards.append(i)
+        for i in xrange(CC_CARDS): 
+            cards.append(i)
         shuffle(cards)
-        if CC_CARDS < 2: raise Exception(CC_CARDS , "<", 2, ". Increase it!")
         valuesToCareAbout['GO'] = 0
         valuesToCareAbout['JAIL'] = 1
-    
+        if CC_CARDS < len(valuesToCareAbout): 
+            raise Exception(CC_CARDS , "<", len(valuesToCareAbout), ". Increase it!")
+
     nextCard = cards.popleft()
     cards.append(nextCard)       # place in back
     
