@@ -13,7 +13,8 @@ def main():
     
     countingDict = {}
     
-    for i in xrange(0, M): countingDict[i] = 1
+    for i in xrange(0, M): 
+        countingDict[i] = 1
     
     iterator = M
     
