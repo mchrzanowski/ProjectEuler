@@ -9,12 +9,10 @@ from time import time
 def main(): 
     
     LIMIT = 50
-    countingDict = {-1: 1, 0: 1, 1: 1, 2: 1, 3: 2}
+    countingDict = {0:1, 1:1, 2:1, 3:2, 4:4}  # base cases.
     
-    for i in xrange(4, LIMIT + 1):
+    for i in xrange(5, LIMIT + 1):
         countingDict[i] = countingDict[i - 1] + countingDict[i - 2] - countingDict[i - 3] + countingDict[i - 4] + countingDict[i - 5]
-        
-#        print i, ":", countingDict[i]                    
     
     print "Solution:", countingDict[LIMIT]
 
