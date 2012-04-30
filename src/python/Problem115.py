@@ -11,19 +11,17 @@ def main():
     LIMIT = 1 * 10 ** 6
     M = 50
     
-    countingDict = {}
+    countingDict = dict()
+    iterator = 0
     
-    for i in xrange(0, M): 
-        countingDict[i] = 1
-    
-    iterator = M
-    
-    while countingDict[iterator - 1] < LIMIT:
+    while iterator < M: 
+        countingDict[iterator] = 1
+        iterator += 1
         
+    while countingDict[iterator - 1] < LIMIT:
         countingDict[iterator] = countingDict[iterator - 1] + 1
         for j in xrange(M, iterator):
             countingDict[iterator] += countingDict[iterator - (j + 1)]
-            
         iterator += 1
     
     print "First row that sums to > %d : %d" % (LIMIT, iterator - 1)
