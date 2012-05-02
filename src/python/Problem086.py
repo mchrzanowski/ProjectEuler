@@ -3,6 +3,7 @@ Created on Apr 30, 2012
 
 @author: mchrzanowski
 
+USE PYPY ONLY
 '''
 
 from math import sqrt
