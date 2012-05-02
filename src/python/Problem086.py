@@ -3,7 +3,6 @@ Created on Apr 30, 2012
 
 @author: mchrzanowski
 
-USE PYPY ONLY
 '''
 
 from math import sqrt
@@ -24,8 +23,16 @@ def main():
                 one = i ** 2 + (j + k) ** 2
                 two = j ** 2 + (i + k) ** 2
                 three = k ** 2 + (i + j) ** 2
+                
+                if one < two:
+                    minimum = one
+                else:
+                    minimum = two
+                    
+                if minimum > three:
+                    minimum = three
                                 
-                if sqrt(min([one, two, three])).is_integer():
+                if sqrt(minimum).is_integer():
                     solutions += 1
                     
     print M, ":", solutions
