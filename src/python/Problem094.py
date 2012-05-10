@@ -27,28 +27,28 @@ def main():
     # create valid triangles   
     defaultNNNPlusOneSides = (5, 65, 901)     
     nNNPlusOne = recurrenceRelation(defaultNNNPlusOneSides[0], defaultNNNPlusOneSides[1], defaultNNNPlusOneSides[2])
-    createPerimeterFromPlusOne = lambda x: x * 3 + 1
+    createPerimeterForNNNPlusOne = lambda x: x * 3 + 1
     
     for defaultSide in defaultNNNPlusOneSides:
-        solutions += createPerimeterFromPlusOne(defaultSide)
+        solutions += createPerimeterForNNNPlusOne(defaultSide)
         
     for newSide in nNNPlusOne:
-        if createPerimeterFromPlusOne(newSide) <= LIMIT:
-            solutions += createPerimeterFromPlusOne(newSide)
+        if createPerimeterForNNNPlusOne(newSide) <= LIMIT:
+            solutions += createPerimeterForNNNPlusOne(newSide)
         else:
             break
     
     # now, calculate the n, n, n-1 triangles.
     defaultNNNMinusOneSides = (17, 241, 3361)
     nNNMinusOne = recurrenceRelation(defaultNNNMinusOneSides[0], defaultNNNMinusOneSides[1], defaultNNNMinusOneSides[2])
-    createPerimeterFromMinusOne = lambda x: x * 3 - 1
+    createPerimeterForNNNMinusOne = lambda x: x * 3 - 1
     
     for defaultSide in defaultNNNMinusOneSides:
-        solutions += createPerimeterFromMinusOne(defaultSide)
+        solutions += createPerimeterForNNNMinusOne(defaultSide)
     
     for newSide in nNNMinusOne:
-        if createPerimeterFromMinusOne(newSide) <= LIMIT:
-            solutions += createPerimeterFromMinusOne(newSide)
+        if createPerimeterForNNNMinusOne(newSide) <= LIMIT:
+            solutions += createPerimeterForNNNMinusOne(newSide)
         else:
             break
 
