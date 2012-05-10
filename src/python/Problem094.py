@@ -4,30 +4,57 @@ Created on May 7, 2012
 @author: mchrzanowski
 '''
 
-from math import sqrt
 from time import time
+
+def recurrenceRelation(firstResult, secondResult, thirdResult):
+    memoizedDict = {1:firstResult, 2:secondResult, 3:thirdResult}
+    iterator = 4
+    while True:
+        memoizedDict[iterator] = 15 * memoizedDict[iterator - 1] - 15 * memoizedDict[iterator - 2] + memoizedDict[iterator - 3]
+        yield memoizedDict[iterator]
+        iterator += 1
 
 def main():
     
+    # recurrence relationships received from:
+    # http://www.had2know.com/academics/nearly-equilateral-heronian-triangles.html
+    
     LIMIT = 1 * 10 ** 9
     solutions = 0
+
+    # first, calculate the n, n, n+1 heronian isosceles triangles.
+    # seed the recurrence relation method with the first 3 n I found by hand that 
+    # create valid triangles   
+    defaultNNNPlusOneSides = (5, 65, 901)     
+    nNNPlusOne = recurrenceRelation(defaultNNNPlusOneSides[0], defaultNNNPlusOneSides[1], defaultNNNPlusOneSides[2])
+    createPerimeterFromPlusOne = lambda x: x * 3 + 1
     
-    for i in xrange(3, 1 + LIMIT / 3, 2):   # identical lengths must be odd.
+    for defaultSide in defaultNNNPlusOneSides:
+        solutions += createPerimeterFromPlusOne(defaultSide)
         
-        for j in (i - 1, i + 1):
-                        
-            if i + i + j > LIMIT: 
-                continue
-            
-            # Heron's formula.
-            s = float(i + i + j) / 2                         
-            area = sqrt(s * (s - i) * (s - i) * (s - j))
-            
-            if area.is_integer():
-#                print i, i, j, s, area
-                solutions += i + i + j
+    for newSide in nNNPlusOne:
+        if createPerimeterFromPlusOne(newSide) <= LIMIT:
+            solutions += createPerimeterFromPlusOne(newSide)
+        else:
+            break
     
-    print "Solutions:", solutions
+    # now, calculate the n, n, n-1 triangles.
+    # but the recurrence relationship only works for n, n+1, n+1
+    defaultNNNMinusOneSides = (16, 240, 3360)
+    nNNMinusOne = recurrenceRelation(defaultNNNMinusOneSides[0], defaultNNNMinusOneSides[1], defaultNNNMinusOneSides[2])
+    createPerimeterFromMinusOne = lambda x: x * 3 + 2
+    
+    for defaultSide in defaultNNNMinusOneSides:
+        solutions += createPerimeterFromMinusOne(defaultSide)
+    
+    for newSide in nNNMinusOne:
+        if createPerimeterFromMinusOne(newSide) <= LIMIT:
+            solutions += createPerimeterFromMinusOne(newSide)
+        else:
+            break
+
+
+    print "Solutions:", solutions    
         
 
 if __name__ == '__main__':
