@@ -39,10 +39,9 @@ def main():
             break
     
     # now, calculate the n, n, n-1 triangles.
-    # but the recurrence relationship only works for n, n+1, n+1
-    defaultNNNMinusOneSides = (16, 240, 3360)
+    defaultNNNMinusOneSides = (17, 241, 3361)
     nNNMinusOne = recurrenceRelation(defaultNNNMinusOneSides[0], defaultNNNMinusOneSides[1], defaultNNNMinusOneSides[2])
-    createPerimeterFromMinusOne = lambda x: x * 3 + 2
+    createPerimeterFromMinusOne = lambda x: x * 3 - 1
     
     for defaultSide in defaultNNNMinusOneSides:
         solutions += createPerimeterFromMinusOne(defaultSide)
