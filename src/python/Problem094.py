@@ -5,17 +5,17 @@ Created on May 7, 2012
 '''
 
 from time import time
-
-def getNextSideOfHeronianTriangle(firstResult, secondResult, thirdResult):
-    memoization = {1:firstResult, 2:secondResult, 3:thirdResult}
-    iterator = 4
-    while True:
-        memoization[iterator] = 15 * memoization[iterator - 1] - 15 * memoization[iterator - 2] + memoization[iterator - 3]
-        yield memoization[iterator]
-        iterator += 1
         
 def constructValidHeronianTriangles(perimeterConstruction, LIMIT, firstDefaultSide, secondDefaultSide, thirdDefaultSide):
     
+    def getNextSideOfHeronianTriangle(firstResult, secondResult, thirdResult):
+        memoization = {1:firstResult, 2:secondResult, 3:thirdResult}
+        iterator = 4
+        while True:
+            memoization[iterator] = 15 * memoization[iterator - 1] - 15 * memoization[iterator - 2] + memoization[iterator - 3]
+            yield memoization[iterator]
+            iterator += 1
+        
     solutions = 0
     
     for defaultSide in (firstDefaultSide, secondDefaultSide, thirdDefaultSide):
