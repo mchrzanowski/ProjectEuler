@@ -7,23 +7,30 @@ Created on Mar 16, 2012
 from math import log10
 from time import time
 
-def fib(n, cache=[0, 1]):
+class FibGenerator(object):
     ''' super-quick memoized fib calculator exploiting the fact that we need to calculate each fib number'''
-    if n < 2: 
-        return n
-    else:
-        cache[0], cache[1] = cache[1], sum(cache)
-        return cache[1]
-    
+
+    def __init__(self):
+        ''' start the variables out with the first two Fib numbers. Label the second to be the first Fib number'''
+        self.previous = 0
+        self.current = 1
+        self.iterator = 1
+        
+        
+    def generateNext(self):
+        ''' return the next fib number as well as an identifier of which fib number this is '''
+        self.previous, self.current = self.current, self.previous + self.current
+        self.iterator += 1
+        return self.iterator, self.current
+
 def main():
     
     solution = 0
-    iteration = 1
-    
-    pandigitals = frozenset([i for i in xrange(1, 10)])
+    pandigitals = frozenset(i for i in xrange(1, 10))
+    fibGenerator = FibGenerator()    
     
     def createSetOfDigitsInNumber(number):
-        setToFill = set([])
+        setToFill = set()
         while number != 0:
             setToFill.add(number % 10)
             number /= 10
@@ -31,7 +38,7 @@ def main():
         
     while solution == 0:
                 
-        result = fib(iteration)
+        fibNumber, result = fibGenerator.generateNext()
     
         # formula to get the first number of digits in a number came from:
         # http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibFormula.html#fibinits
@@ -43,9 +50,7 @@ def main():
             tailSet = createSetOfDigitsInNumber(result % 10 ** 9)
         
             if pandigitals == tailSet:
-                solution = iteration
-        
-        iteration += 1
+                solution = fibNumber
                     
     print "Solution: ", solution
         
