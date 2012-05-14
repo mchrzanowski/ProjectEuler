@@ -13,19 +13,19 @@ DEFAULT = 0
 def readInMatrices(fileName):
     matrixCollection = []
     newMatrixPattern = re.compile("Grid [0-9]+")
-    file = open(os.path.join(os.curdir, fileName), 'r')
-    for line in file:
-        line = line.rstrip("\n")
-        if newMatrixPattern.match(line):
-            matrixCollection.append([])
-        else:
-            matrixCollection[-1].append([int(number) for number in line])
+    with open(os.path.join(os.curdir, fileName), 'r') as file:
+        for line in file:
+            line = line.rstrip("\n")
+            if newMatrixPattern.match(line):
+                matrixCollection.append([])
+            else:
+                matrixCollection[-1].append([int(number) for number in line])
             
     return matrixCollection
 
 def isColumnStillUnique(colToCheck, matrix):
     ''' check a row for non-DEFAULT duplicates '''
-    seen = set([])
+    seen = set()
     for row in xrange(len(matrix)):
         if matrix[row][colToCheck] not in seen:
             seen.add(matrix[row][colToCheck])
@@ -37,7 +37,7 @@ def isColumnStillUnique(colToCheck, matrix):
 def isBoxStillUnique(boxToCheck, matrix):
     ''' box check for non-DEFAULT duplicates '''
     startRow, startColumn = getMatrixStartPoints(boxToCheck)
-    seen = set([])
+    seen = set()
     for row in xrange(startRow, startRow + 3):
         for col in xrange(startColumn, startColumn + 3):
             if matrix[row][col] not in seen:
@@ -48,7 +48,7 @@ def isBoxStillUnique(boxToCheck, matrix):
 
 def isRowStillUnique(rowToCheck, matrix):
     ''' check if a given row contains no duplicates except the DEFAULT case '''
-    seen = set([])
+    seen = set()
     
     for number in matrix[rowToCheck]:
         if number not in seen:
@@ -71,7 +71,7 @@ def solveSudoku(matrix):
     http://www.sudopedia.org/wiki/Ariadne's_Thread
     '''
     for i in xrange(len(matrix)):
-        for j in xrange(len(matrix)):
+        for j in xrange(len(matrix[i])):
             if matrix[i][j] == DEFAULT:
                 for newNumber in xrange(1, 10):
                     
