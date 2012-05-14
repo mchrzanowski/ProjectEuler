@@ -8,7 +8,8 @@ from math import log10
 from time import time
 
 class FibGenerator(object):
-    ''' super-quick memoized fib calculator exploiting the fact that we need to calculate each fib number'''
+    ''' super-quick memoized fib calculator exploiting the fact that we need to calculate each fib number, 
+    yet we don't need to store all previous numbers.'''
 
     def __init__(self):
         ''' start the variables out with the first two Fib numbers. Label the second to be the first Fib number'''
