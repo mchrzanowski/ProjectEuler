@@ -8,19 +8,30 @@ import os.path
 from time import time
 
 DEFAULT_NUMBER = 1 * 10 ** 7
+EMPTY_CHAR = '-'
 
 def readInMatrix(fileName):
     
     matrix = []
+    global DEFAULT_NUMBER
+    
     with open(os.path.join(os.curdir, fileName), 'r') as f:
         for line in f:
             newRow = []
             for weight in line.rstrip("\n\r").split(','):
-                if not weight.isdigit():
-                    newRow.append(DEFAULT_NUMBER)
-                else:
-                    newRow.append(int(weight))
+                if weight != EMPTY_CHAR:
+                    weight = int(weight)
+                    if weight > DEFAULT_NUMBER:            # EMPTY_CHAR symbolizes a non-existent edge. but it's a char.   
+                        DEFAULT_NUMBER = weight + 1        # store the max value in the matrix to overwrite the char.
+                newRow.append(weight)
+            
             matrix.append(newRow)
+        
+    # overwrite EMPTY_CHAR with a value too large to matter.
+    for i in xrange(len(matrix)):
+        for j in xrange(len(matrix[i])):
+            if matrix[i][j] == EMPTY_CHAR:
+                matrix[i][j] = DEFAULT_NUMBER
     
     return matrix
 
