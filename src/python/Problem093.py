@@ -5,7 +5,7 @@ Created on May 15, 2012
 '''
 
 from itertools import permutations
-from operator import add, truediv, mul, sub
+from operator import add, mul, sub, truediv
 from time import time
 
 
@@ -71,8 +71,8 @@ def main():
                     key = ''.join(str(number) for number in sorted(tuple_of_values))
                     solutions[key] = set()
                     
-                    for new_a, new_b, new_c, new_d in permutations(tuple_of_values, 4):
-                        solutions[key].update(create_target_numbers(new_a, new_b, new_c, new_d))
+                    for permutation in permutations(tuple_of_values, 4):
+                        solutions[key].update(create_target_numbers(*permutation))
                         
     
     # iterate through our solutions and get the max consecutive run.
