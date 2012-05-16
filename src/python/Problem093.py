@@ -72,8 +72,7 @@ def main():
                     solutions[key] = set()
                     
                     for new_a, new_b, new_c, new_d in permutations(tuple_of_values, 4):
-                        target_numbers = create_target_numbers(new_a, new_b, new_c, new_d)
-                        solutions[key].update(target_numbers)
+                        solutions[key].update(create_target_numbers(new_a, new_b, new_c, new_d))
                         
     
     # iterate through our solutions and get the max consecutive run.
