@@ -4,6 +4,7 @@ Created on May 15, 2012
 @author: mchrzanowski
 '''
 
+from itertools import permutations
 from operator import add, truediv, mul, sub
 from time import time
 
@@ -61,17 +62,17 @@ def main():
     
     solutions = {}
     
-    for a in xrange(START_DIGIT, END_DIGIT + 1):
-        for b in xrange(START_DIGIT, END_DIGIT + 1):
-            for c in xrange(START_DIGIT, END_DIGIT + 1):
-                for d in xrange(START_DIGIT, END_DIGIT + 1):
-                    if a != b and b != c and c != d and a != c and a != d and b != d:
-                        target_numbers = create_target_numbers(a, b, c, d)
-                        
-                        key = ''.join(str(number) for number in sorted((a, b, c, d)))
-                        if key not in solutions:
-                            solutions[key] = set()
-                        
+    for a in xrange(START_DIGIT, END_DIGIT - 2):
+        for b in xrange(a + 1, END_DIGIT - 1):
+            for c in xrange(b + 1, END_DIGIT):
+                for d in xrange(c + 1, END_DIGIT + 1):
+                    
+                    tuple_of_values = (a, b, c, d)
+                    key = ''.join(str(number) for number in sorted(tuple_of_values))
+                    solutions[key] = set()
+                    
+                    for new_a, new_b, new_c, new_d in permutations(tuple_of_values, 4):
+                        target_numbers = create_target_numbers(new_a, new_b, new_c, new_d)
                         solutions[key].update(target_numbers)
                         
     
