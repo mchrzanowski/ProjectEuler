@@ -45,7 +45,7 @@ def create_target_numbers(a, b, c, d):
                     solution_4 = -1
                 
                 try:
-                    solution_5 = op_1(a, op_2(b, op_1(c, d)))     # (a (b (c d)))
+                    solution_5 = op_3(a, op_2(b, op_1(c, d)))     # (a (b (c d)))
                 except ZeroDivisionError:
                     solution_5 = -1
                 
