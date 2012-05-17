@@ -4,7 +4,7 @@ Created on May 15, 2012
 @author: mchrzanowski
 '''
 
-from itertools import permutations
+from itertools import combinations, permutations
 from operator import add, mul, sub, truediv
 from time import time
 
@@ -57,40 +57,33 @@ def create_target_numbers(a, b, c, d):
 
 def main():
     
-    START_DIGIT = 1
-    END_DIGIT = 9
-    
-    solutions = {}
-    
-    for a in xrange(START_DIGIT, END_DIGIT - 2):
-        for b in xrange(a + 1, END_DIGIT - 1):
-            for c in xrange(b + 1, END_DIGIT):
-                for d in xrange(c + 1, END_DIGIT + 1):
-                    
-                    tuple_of_values = (a, b, c, d)
-                    key = ''.join(str(number) for number in sorted(tuple_of_values))
-                    solutions[key] = set()
-                    
-                    for permutation in permutations(tuple_of_values, 4):
-                        solutions[key].update(create_target_numbers(*permutation))
-                        
-    
-    # iterate through our solutions and get the max consecutive run.
+    digit_pool = frozenset(number for number in xrange(1, 9 + 1))
     max_run = 0
     max_key = None
     
-    for key in solutions:
+    for combination in combinations(digit_pool, 4):
+                            
+        target_numbers = set()
+        
+        for permutation in permutations(combination, 4):
+            target_numbers.update(create_target_numbers(*permutation))
+        
+
+        # iterate through our set and get the max consecutive run.
         run_length = 0
         previous_value = None
-        for value in sorted(solutions[key]):
+        
+        for value in sorted(target_numbers):
             if previous_value is None or value == previous_value + 1:
                 run_length += 1
                 previous_value = value
             else:
                 break
+        
         if run_length > max_run:
             max_run = run_length
-            max_key = key
+            max_key = combination
+            
     
     print "abcd:", max_key
     print "Greatest run of consecutive numbers:", max_run
