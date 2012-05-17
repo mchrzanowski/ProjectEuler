@@ -4,16 +4,8 @@ Created on May 16, 2012
 @author: mchrzanowski
 '''
 
+from itertools import combinations
 from time import time
-
-def generate_new_combination():
-    for a in xrange(0, 9 - 4):
-        for b in xrange(a + 1, 9 - 3):
-            for c in xrange(b + 1, 9 - 2):
-                for d in xrange(c + 1, 9 - 1):
-                    for e in xrange(d + 1, 9):
-                        for f in xrange(e + 1, 9 + 1):
-                            yield {a, b, c, d, e, f}
 
 def main():
     
@@ -30,9 +22,10 @@ def main():
     create_81 = lambda x, y: (8 in x and 1 in y) or (8 in y and 1 in x)
     
     solutions = 0
+    numbers = {number for number in xrange(0, 9 + 1)}
     
-    for x in generate_new_combination():
-        for y in generate_new_combination():
+    for x in combinations(numbers, 6):
+        for y in combinations(numbers, 6):
             
             if create_1(x, y) and create_4(x, y) and create_9(x, y) and create_16(x, y) and create_25(x, y) \
             and create_36(x, y) and create_49(x, y) and create_64(x, y) and create_81(x, y):
