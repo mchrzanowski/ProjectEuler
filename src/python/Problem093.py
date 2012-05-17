@@ -69,7 +69,7 @@ def main():
             target_numbers.update(create_target_numbers(*permutation))
         
 
-        # iterate through our set and get the max consecutive run.
+        # iterate through our set and get the length of the consecutive run.
         run_length = 0
         previous_value = None
         
