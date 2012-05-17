@@ -82,7 +82,7 @@ def main():
         
         if run_length > max_run:
             max_run = run_length
-            max_key = combination
+            max_key = ''.join(str(digit) for digit in combination)
             
     
     print "abcd:", max_key
