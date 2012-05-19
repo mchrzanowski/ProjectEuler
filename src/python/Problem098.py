@@ -47,7 +47,7 @@ def map_number(anagram, letter_to_number_mapping):
 
 def main():
     
-    digits_sans_zero = frozenset(digit for digit in xrange(1, 9  + 1))
+    digit_pool = frozenset(digit for digit in xrange(0, 9  + 1))
     anagrams = get_anagrams(os.path.join(os.curdir, './requiredFiles/Problem098Words.txt'))
     
     max_square = 0
@@ -55,38 +55,33 @@ def main():
     for key in anagrams:
         
         unique_chars = tuple(char for char in key)
-        
-        for start in digits_sans_zero:  # by definition, the first letter can't be mapped to 0. so, remove these possibilities.
+                    
+        letter_mapping = dict()
             
-            letter_mapping = dict()
+        # brute force through all permutations.
+        for permutation in permutations(digit_pool, len(unique_chars)):
             
-            # brute force through all permutations.
-            for other_mappings in permutations((digit for digit in xrange(0, 9 + 1) if digit != start), len(unique_chars) - 1):
+            for i, letter in enumerate(unique_chars):
+                letter_mapping[letter] = permutation[i]
+            
+            mapping_produces_all_squares_flag = True
+            max_square_this_round = 0
+            
+            for anagram in anagrams[key]:
                 
-                for i, letter in enumerate(unique_chars):
-                    if i == 0:
-                        letter_mapping[letter] = start
-                    else:
-                        letter_mapping[letter] = other_mappings[i - 1]
+                number = map_number(anagram, letter_mapping)
                 
-                mapping_produces_all_squares_flag = True
-                max_square_this_round = 0
+                # first part means that the first letter in the anagram transformed into a zero
+                # second part deals with finding perfect squares only.
+                if int(log10(number)) != len(anagram) - 1 or not sqrt(number).is_integer():
+                    mapping_produces_all_squares_flag = False
+                    break
                 
-                for anagram in anagrams[key]:
+                elif number > max_square_this_round:
+                    max_square_this_round = number
                     
-                    number = map_number(anagram, letter_mapping)
-                    
-                    # first part means that the first letter in the anagram transformed into a zero
-                    # second part deals with finding perfect squares only.
-                    if int(log10(number)) != len(anagram) - 1 or not sqrt(number).is_integer():
-                        mapping_produces_all_squares_flag = False
-                        break
-                    
-                    elif number > max_square_this_round:
-                        max_square_this_round = number
-                        
-                if mapping_produces_all_squares_flag and max_square_this_round > max_square:
-                    max_square = max_square_this_round
+            if mapping_produces_all_squares_flag and max_square_this_round > max_square:
+                max_square = max_square_this_round
         
     print "Max square:", max_square
 
