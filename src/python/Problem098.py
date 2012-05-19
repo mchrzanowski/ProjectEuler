@@ -54,8 +54,13 @@ def main():
         
     for key in anagrams:
         
-        unique_chars = tuple(char for char in key)
-                    
+        unique_chars = list()               # iteration must be deterministic
+        unique_chars_bank = set()           # use fast lookup of sets to create the unique list
+        for char in key:
+            if char not in unique_chars_bank:
+                unique_chars.append(char)
+                unique_chars_bank.add(char)
+        
         letter_mapping = dict()
             
         # brute force through all permutations.
