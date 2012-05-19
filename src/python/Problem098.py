@@ -69,7 +69,7 @@ def main():
             for i, letter in enumerate(unique_chars):
                 letter_mapping[letter] = permutation[i]     # map a letter to a number
             
-            mapping_produces_all_squares_flag = True
+            mapping_produces_only_squares_flag = True
             max_square_this_round = 0
             
             for anagram in anagrams[key]:
@@ -79,13 +79,13 @@ def main():
                 # first part means that the first letter in the anagram transformed into a zero
                 # second part deals with finding perfect squares only.
                 if int(log10(number)) != len(anagram) - 1 or not sqrt(number).is_integer():
-                    mapping_produces_all_squares_flag = False
+                    mapping_produces_only_squares_flag = False
                     break
                 
                 elif number > max_square_this_round:
                     max_square_this_round = number
                     
-            if mapping_produces_all_squares_flag and max_square_this_round > max_square:
+            if mapping_produces_only_squares_flag and max_square_this_round > max_square:
                 max_square = max_square_this_round
     
     print "Max square:", max_square
