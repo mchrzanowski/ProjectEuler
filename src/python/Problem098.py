@@ -67,7 +67,7 @@ def main():
         for permutation in permutations(digit_pool, len(unique_chars)):
             
             for i, letter in enumerate(unique_chars):
-                letter_mapping[letter] = permutation[i]
+                letter_mapping[letter] = permutation[i]     # map a letter to a number
             
             mapping_produces_all_squares_flag = True
             max_square_this_round = 0
@@ -87,7 +87,7 @@ def main():
                     
             if mapping_produces_all_squares_flag and max_square_this_round > max_square:
                 max_square = max_square_this_round
-        
+    
     print "Max square:", max_square
 
 if __name__ == '__main__':
