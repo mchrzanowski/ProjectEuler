@@ -50,7 +50,11 @@ class FactorizationGenerator(object):
                             yield recursed_numbers
                             
     def can_we_select_correct_factorization_using_k_numbers(self):
-        
+        ''' 
+            see whether we can actually work with one of the factorizations of original_number to generate the same product and sum 
+            and use k terms. rather than append ones, we use the formula:
+            # of ones to append = original_number - sum(factorization)
+        '''
         for factorization in self.generate_all_factorizations():
             if self.original_number - sum(factorization) + len(factorization) == self.k:
                     return True
