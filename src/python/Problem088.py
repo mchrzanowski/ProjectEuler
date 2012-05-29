@@ -77,7 +77,7 @@ def main():
             
             factorization_generator = FactorizationGenerator(k = k, original_number = i, factorization = p.factorize(i))
                                     
-            if factorization_generator.can_we_select_correct_factorization_using_k_terms():
+            if factorization_generator.can_we_select_correct_factorization_using_k_numbers():
                 solutions.add(i)
                 break
 
