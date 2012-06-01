@@ -14,13 +14,13 @@ class Point(object):
         self.y = y
         
     def __eq__(self, other):
-        return other.x == self.x and other.y == self.y
+        return type(other) is type(self) and other.x == self.x and other.y == self.y
     
     def __ne__(self, other):
-        return other.x != self.x or other.y != self.y
+        return not self.__eq__(other)
     
     def __str__(self):
-        return "x:%f\ty:%f" % (self.x, self.y) 
+        return "x:%r\ty:%r" % (self.x, self.y) 
 
 
 def fit_polynomial_function_and_get_next_point(points, new_x):
