@@ -4,6 +4,7 @@ Created on May 31, 2012
 @author: mchrzanowski
 '''
 
+from __future__ import division
 from time import time
 
 class Point(object):
@@ -19,7 +20,7 @@ class Point(object):
         return other.x != self.x or other.y != self.y
     
     def __str__(self):
-        return "x:" + str(self.x) + "\ty:" + str(self.y) 
+        return "x:%f\ty:%f" % (self.x, self.y) 
 
 
 def fit_polynomial_function_and_get_next_point(points, new_x):
@@ -32,10 +33,7 @@ def fit_polynomial_function_and_get_next_point(points, new_x):
     new_y = 0
     
     for point in points:
-        
-        x = point.x
-        y = point.y
-        
+                
         temporary_y = 1
         
         for other_point in points:
@@ -43,9 +41,9 @@ def fit_polynomial_function_and_get_next_point(points, new_x):
             if other_point == point:
                 continue
             
-            temporary_y *= float(new_x - other_point.x) / (x - other_point.x)
+            temporary_y *= (new_x - other_point.x) / (point.x - other_point.x)
             
-        new_y += y * temporary_y
+        new_y += point.y * temporary_y
             
     return Point(new_x, int(round(new_y)))      # assume the nearest integer
 
