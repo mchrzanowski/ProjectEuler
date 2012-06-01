@@ -63,22 +63,20 @@ def main():
     
     bad_terms = 0
     
-    sequence_generator = enumerate(true_sequence_generator())
-    
-    first_point = sequence_generator.next()
-    
-    list_of_true_points = [Point(first_point[0] + 1, first_point[1])]
+    sequence_generator = enumerate(true_sequence_generator(), start = 1)
+        
+    list_of_true_points = [Point(*sequence_generator.next())]   # loop assume the collection is not empty
         
     for x, y in sequence_generator:
                 
-        next_theoretical_point = fit_polynomial_function_and_get_next_point(list_of_true_points, x + 1)
+        next_theoretical_point = fit_polynomial_function_and_get_next_point(list_of_true_points, x)
                 
-        list_of_true_points.append(Point(x + 1, y))
+        list_of_true_points.append(Point(x, y))
                         
         if next_theoretical_point == list_of_true_points[-1]:
             break
-        
-        bad_terms += next_theoretical_point.y
+        else:
+            bad_terms += next_theoretical_point.y
     
     
     print "Sum of bad terms encountered before the correct polynomial fitting was discovered:", bad_terms
