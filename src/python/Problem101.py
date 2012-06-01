@@ -25,7 +25,7 @@ class Point(object):
 
 def fit_polynomial_function_and_get_next_point(points, new_x):
     ''' 
-        use the LaGrange polynomial function generator algorithm given at:
+        use the Lagrange polynomial function generator algorithm given at:
         # http://en.wikipedia.org/wiki/Lagrange_polynomial
         to fit a function and then get the next point 
     '''
