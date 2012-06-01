@@ -49,6 +49,7 @@ def fit_polynomial_function_and_get_next_point(points, new_x):
 
 
 def true_sequence_generator():
+    ''' this method generates a sequence of numbers from the correct polynomial function '''
     number = 1
     while True:
         result = 0
@@ -74,7 +75,7 @@ def main():
                 
         list_of_true_points.append(Point(x + 1, y))
                         
-        if next_theoretical_point.y == list_of_true_points[-1].y:
+        if next_theoretical_point == list_of_true_points[-1]:
             break
         
         bad_terms += next_theoretical_point.y
