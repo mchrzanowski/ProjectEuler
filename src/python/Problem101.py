@@ -81,7 +81,7 @@ def main():
         bad_terms += next_theoretical_point.y
     
     
-    print "Sum of bad terms:", bad_terms
+    print "Sum of bad terms encountered before the correct polynomial fitting was discovered:", bad_terms
 
 if __name__ == '__main__':
     start = time()
