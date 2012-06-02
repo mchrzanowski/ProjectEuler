@@ -14,10 +14,10 @@ class Point(object):
         self.y = y
         
     def __eq__(self, other):
-        return type(other) is type(self) and other.x == self.x and other.y == self.y
+        return type(other) == type(self) and other.__dict__ == self.__dict__
     
     def __ne__(self, other):
-        return not self.__eq__(other)
+        return not self == other
     
     def __str__(self):
         return "x:%r\ty:%r" % (self.x, self.y) 
