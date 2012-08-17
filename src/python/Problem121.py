@@ -41,6 +41,8 @@ def main(turns):
         product_numerator = 1
         for index, letter in enumerate(product):
             if letter == 'R':
+                # the number of 'R's in a given trial is the index of the trial + 1
+                # (starting at zero)
                 product_numerator *= index + 1
 
         numerator += product_numerator
