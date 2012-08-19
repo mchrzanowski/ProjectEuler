@@ -19,8 +19,8 @@ def do_two_subsets_equal_each_other(numbers, value_to_equal):
     def merge_lists(first, second):
         return first + second
 
-    def add_to_every_element(value_to_add, source_list):
-        return map(lambda x: x + value_to_add, source_list)
+    def add_to_every_element(value_to_add, elements):
+        return map(lambda x: x + value_to_add, elements)
 
     L = [[0]]
     numbers = list(numbers)  # we need to preserve position.
@@ -54,6 +54,7 @@ def does_larger_subset_sum_to_a_larger_number(B, C):
         return False
 
     return True
+
 
 def all_subsets(numbers):
     '''
@@ -121,7 +122,7 @@ def main():
             if not larger_subset_has_larger_sum:
                 continue
 
-            print index, sum(numbers)
+            #print index, sum(numbers)
             special_sets.append(numbers)
 
         total = sum(sum(special_set) for special_set in special_sets)
