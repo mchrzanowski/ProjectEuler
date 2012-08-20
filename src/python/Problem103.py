@@ -10,7 +10,7 @@ import time
 
 def main():
 
-    acceptable_sums = list()
+    acceptable_groups = list()
 
     # since n = 6:
     # 11 (middle from n = 5), 18 (11 + 6 + 1),
@@ -61,11 +61,11 @@ def main():
                                 continue
 
                             # both properties have been verified. save this set for later.
-                            acceptable_sums.append(numbers)
+                            acceptable_groups.append(numbers)
 
     # find the set with the smallest sum.
     minimum = None
-    for acceptable in acceptable_sums:
+    for acceptable in acceptable_groups:
         if minimum is None:
             minimum = acceptable
         elif sum(acceptable) < sum(minimum):
