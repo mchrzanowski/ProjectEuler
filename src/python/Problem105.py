@@ -92,30 +92,19 @@ def is_group_acceptable(numbers):
         of larger sets summing to larger numbers
         for this given group of numbers
     '''
-    two_subsets_are_equal = False
-    larger_subset_has_larger_sum = True
-
     for partition in all_partitions(numbers):
 
         first, second = partition
 
         if do_two_subsets_equal_each_other(first, sum(second)):
-            two_subsets_are_equal = True
-            break
-
-    if two_subsets_are_equal:
-        return False
+            return False
 
     for subset in all_subsets(numbers):
 
         first, second = subset
 
         if not does_larger_subset_sum_to_a_larger_number(first, second):
-            larger_subset_has_larger_sum = False
-            break
-
-    if not larger_subset_has_larger_sum:
-        return False
+            return False
 
     return True
 

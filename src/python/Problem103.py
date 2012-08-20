@@ -35,7 +35,7 @@ def main():
                             if len(numbers) != 7:
                                 continue
 
-                            if Problem105.is_set_acceptable(numbers):
+                            if Problem105.is_group_acceptable(numbers):
                                 # both properties have been verified. save this set for later.
                                 acceptable_groups.append(numbers)
 
