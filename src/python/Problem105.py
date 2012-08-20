@@ -58,16 +58,16 @@ def does_larger_subset_sum_to_a_larger_number(B, C):
 
 def all_subsets(numbers):
     '''
-        return a list of tuples, each containing
-        the various subsets of this number collection
+        return a set of sets, each containing
+        two subsets of this number collection
     '''
-    subsets = list()
+    subsets = set()
     for first_length in xrange(1, len(numbers)):
         for first_combo in itertools.combinations(numbers, first_length):
             disjoint_numbers = [number for number in numbers if number not in first_combo]
             for second_length in xrange(1, len(disjoint_numbers) + 1):
                 for second_combo in itertools.combinations(disjoint_numbers, second_length):
-                    subsets.append((first_combo, second_combo,))
+                    subsets.add(frozenset((first_combo, second_combo,)))
 
     return subsets
 
