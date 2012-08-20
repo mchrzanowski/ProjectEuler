@@ -92,7 +92,7 @@ def main():
         './requiredFiles/Problem105Sets.txt')) as f:
 
         special_sets = list()
-        for index, row in enumerate(f):
+        for row in f:
             numbers = set()
             for number in row.split(","):
                 numbers.add(int(number))
@@ -122,7 +122,6 @@ def main():
             if not larger_subset_has_larger_sum:
                 continue
 
-            #print index, sum(numbers)
             special_sets.append(numbers)
 
         total = sum(sum(special_set) for special_set in special_sets)
