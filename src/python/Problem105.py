@@ -85,7 +85,13 @@ def all_partitions(numbers):
 
     return partitions
 
-def is_set_acceptable(numbers):
+
+def is_group_acceptable(numbers):
+    '''
+        verify the properties of equality and
+        of larger sets summing to larger numbers
+        for this given group of numbers
+    '''
     two_subsets_are_equal = False
     larger_subset_has_larger_sum = True
 
@@ -125,7 +131,7 @@ def main():
             for number in row.split(","):
                 numbers.add(int(number))
 
-            if is_set_acceptable(numbers):
+            if is_group_acceptable(numbers):
                 special_sets.append(numbers)
 
         total = sum(sum(special_set) for special_set in special_sets)
