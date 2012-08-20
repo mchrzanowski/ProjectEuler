@@ -35,33 +35,9 @@ def main():
                             if len(numbers) != 7:
                                 continue
 
-                            two_subsets_are_equal = False
-                            larger_subset_has_larger_sum = True
-
-                            for partition in Problem105.all_partitions(numbers):
-
-                                first, second = partition
-
-                                if Problem105.do_two_subsets_equal_each_other(first, sum(second)):
-                                    two_subsets_are_equal = True
-                                    break
-
-                            if two_subsets_are_equal:
-                                continue
-
-                            for subset in Problem105.all_subsets(numbers):
-
-                                first, second = subset
-
-                                if not Problem105.does_larger_subset_sum_to_a_larger_number(first, second):
-                                    larger_subset_has_larger_sum = False
-                                    break
-
-                            if not larger_subset_has_larger_sum:
-                                continue
-
-                            # both properties have been verified. save this set for later.
-                            acceptable_groups.append(numbers)
+                            if Problem105.is_set_acceptable(numbers):
+                                # both properties have been verified. save this set for later.
+                                acceptable_groups.append(numbers)
 
     # find the set with the smallest sum.
     minimum = None

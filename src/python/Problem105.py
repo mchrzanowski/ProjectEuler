@@ -85,6 +85,34 @@ def all_partitions(numbers):
 
     return partitions
 
+def is_set_acceptable(numbers):
+    two_subsets_are_equal = False
+    larger_subset_has_larger_sum = True
+
+    for partition in all_partitions(numbers):
+
+        first, second = partition
+
+        if do_two_subsets_equal_each_other(first, sum(second)):
+            two_subsets_are_equal = True
+            break
+
+    if two_subsets_are_equal:
+        return False
+
+    for subset in all_subsets(numbers):
+
+        first, second = subset
+
+        if not does_larger_subset_sum_to_a_larger_number(first, second):
+            larger_subset_has_larger_sum = False
+            break
+
+    if not larger_subset_has_larger_sum:
+        return False
+
+    return True
+
 
 def main():
 
@@ -97,32 +125,8 @@ def main():
             for number in row.split(","):
                 numbers.add(int(number))
 
-            two_subsets_are_equal = False
-            larger_subset_has_larger_sum = True
-
-            for partition in all_partitions(numbers):
-
-                first, second = partition
-
-                if do_two_subsets_equal_each_other(first, sum(second)):
-                    two_subsets_are_equal = True
-                    break
-
-            if two_subsets_are_equal:
-                continue
-
-            for subset in all_subsets(numbers):
-
-                first, second = subset
-
-                if not does_larger_subset_sum_to_a_larger_number(first, second):
-                    larger_subset_has_larger_sum = False
-                    break
-
-            if not larger_subset_has_larger_sum:
-                continue
-
-            special_sets.append(numbers)
+            if is_set_acceptable(numbers):
+                special_sets.append(numbers)
 
         total = sum(sum(special_set) for special_set in special_sets)
         print "Total: %d" % total
