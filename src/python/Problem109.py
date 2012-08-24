@@ -53,8 +53,8 @@ def main(max_score):
                         sequence.append(last_dart_value)
                         distinct_sequences.add(tuple(sequence))
 
-    print "Distinct ways of checking out with a score less than %d: %d" % \
-        (max_score, len(distinct_sequences))
+    print "Distinct ways of checking out with a score less than or " + \
+        "equal to %d: %d" % (max_score, len(distinct_sequences))
 
 if __name__ == '__main__':
     import argparse
