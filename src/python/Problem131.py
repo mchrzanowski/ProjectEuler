@@ -16,6 +16,10 @@ def main(ceiling):
     # n ** 2 * (n + p) = x ** 3
     # since x, p, and n are positive integers, we know that
     # n ** 2 and (n + p) must be themselves perfect cubes.
+    #
+    # note that the expression can also be re-written as:
+    # n * (n ** 2 + n * p) = x ** 3, meaning that n must be a perfect cube.
+    #
     # furthermore, if you inspect the first few primes that
     # have the special property of the problem, you see this pattern:
     #   p + n = perfect cube (root)
