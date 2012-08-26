@@ -29,10 +29,14 @@ def main(ceiling):
 
     root = 1
     while True:
+
         difference = (root + 1) ** 3 - root ** 3
+        # you can see that the gulf between two adjacent perfect cubes
+        # is going to grow larger and larger. eventually, the prime falls out
+        # of our scope.
         if difference >= ceiling:
             break
-        if primes.isPrime(difference):
+        elif primes.isPrime(difference):
             special_primes += 1
 
         root += 1
