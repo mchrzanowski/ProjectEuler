@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
         description="Problem 131. URL: http://projecteuler.net/problem=131")
-    parser.add_argument('-max', type=int, help="Maximum numerical ceiling.")
+    parser.add_argument('-max', type=int, help="Maximum prime ceiling.")
     args = vars(parser.parse_args())
     main(args['max'])
 
