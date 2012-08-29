@@ -19,6 +19,8 @@ class ProjectEulerPrime(Prime):
         n = int(n)
         if n < 2:
             return False
+        elif n == 2:
+            return True
         elif n & 1 == 0:
             return False
         elif not Prime.factor(self, n):
