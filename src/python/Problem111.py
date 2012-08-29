@@ -6,8 +6,6 @@ Created on Aug 28, 2012
 
 from ProjectEulerPrime import ProjectEulerPrime
 
-import math
-
 
 def get_primes_from_repeated_zeroes(digits, primes=ProjectEulerPrime()):
     '''
@@ -24,8 +22,7 @@ def get_primes_from_repeated_zeroes(digits, primes=ProjectEulerPrime()):
             source[len(source) - 1] = str(second_replacement_number)
             candidate_number = int(''.join(source))
 
-            if int(math.log10(candidate_number)) + 1 == digits and \
-            primes.isPrime(candidate_number):
+            if primes.isPrime(candidate_number):
                 yield candidate_number
 
 
@@ -44,11 +41,15 @@ def get_primes_by_changing_one_digit(repeated_digit, digits,
         for replacement_number in \
         (value for value in xrange(0, 9 + 1) if value != repeated_digit):
 
+            # first number can't be 0 as that would shrink the number of
+            # digits.
+            if replacement_number == 0 and replacement_number == 0:
+                continue
+
             candidate[substitution_place] = str(replacement_number)
             candidate_number = int(''.join(candidate))
 
-            if int(math.log10(candidate_number)) + 1 == digits and \
-            primes.isPrime(candidate_number):
+            if primes.isPrime(candidate_number):
                 yield candidate_number
 
 
@@ -68,16 +69,23 @@ def get_primes_by_changing_two_digits(repeated_digit, digits,
             for first_repl_number in \
             (value for value in xrange(0, 9 + 1) if value != repeated_digit):
 
+                # first number can't be 0 as that would shrink the number of
+                # digits.
+                if first_repl_number == 0 and first_sub_place == 0:
+                    continue
+
                 candidate[first_sub_place] = str(first_repl_number)
 
                 for second_repl_number in (value for value in \
                 xrange(0, 9 + 1) if value != repeated_digit):
 
+                    if second_repl_number == 0 and second_sub_place == 0:
+                        continue
+
                     candidate[second_sub_place] = str(second_repl_number)
                     candidate_number = int(''.join(candidate))
 
-                    if int(math.log10(candidate_number)) + 1 == digits and \
-                    primes.isPrime(candidate_number):
+                    if primes.isPrime(candidate_number):
                         yield candidate_number
 
 
