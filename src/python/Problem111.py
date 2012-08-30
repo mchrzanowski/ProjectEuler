@@ -127,7 +127,7 @@ def main(digits):
             repeated_digit)
 
     total = 0
-    for digit in special_primes:
+    for digit in sorted(special_primes):
         summation = sum(special_primes[digit])
         print "S(%d, %d): %d" % (digits, digit, summation)
         total += summation
