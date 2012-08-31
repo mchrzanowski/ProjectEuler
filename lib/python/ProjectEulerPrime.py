@@ -23,7 +23,7 @@ class ProjectEulerPrime(Prime):
             return True
         elif n & 1 == 0:
             return False
-        elif not Prime.factor(self, n):
+        elif not self.factor(n):
             return True
         else:
             return False
