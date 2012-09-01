@@ -135,7 +135,7 @@ def eea(a, b):
     return v1
 
 
-def inverse(m, k):
+def modular_inverse(m, k):
     """
         Return b such that b*m mod k = 1, or 0 if no solution
         from:
@@ -162,6 +162,6 @@ def crt(ms, az):
     from operator import add, mul
 
     M = reduce(mul, ms)  # multiply ms together
-    Ms = (M / mi for mi in ms)   # list of all M/mi
-    ys = (inverse(Mi, mi) for Mi, mi in zip(Ms, ms))  # uses inverse,eea
-    return reduce(add, (ai * Mi * yi for ai, Mi, yi in zip(az, Ms, ys))) % M
+    Ms = tuple(M / mi for mi in ms)   # list of all M/mi
+    ys = tuple(modular_inverse(Mi, mi) for Mi, mi in zip(Ms, ms))  # uses inverse,eea
+    return reduce(add, tuple(ai * Mi * yi for ai, Mi, yi in zip(az, Ms, ys))) % M
