@@ -4,6 +4,7 @@ Created on Aug 31, 2012
 @author: mchrzanowski
 '''
 
+from math import log10
 from ProjectEulerPrime import ProjectEulerPrime
 
 
@@ -37,17 +38,16 @@ def main(max_number):
         if first_prime > max_number:
             break
 
-        # must remain odd as first_prime is odd
-        # and odd * even -> even.
-        coefficient = 3
-
-        str_first_prime = str(first_prime)
-
-        while not str(coefficient * second_prime).endswith(str_first_prime):
-            coefficient += 2
+        increment = 10 ** (int(log10(first_prime)) + 1)
+        first_section = increment
+        while True:
+            residual = first_section + first_prime
+            if residual % second_prime == 0:
+                break
+            first_section += increment
 
         #print first_prime, second_prime, coefficient, coefficient * second_prime
-        summation += coefficient * second_prime
+        summation += residual
         first_prime = second_prime
 
     print summation
