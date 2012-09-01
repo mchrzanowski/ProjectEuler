@@ -38,6 +38,11 @@ def main(max_number):
         if first_prime > max_number:
             break
 
+        # we have the congruence relation:
+        # first_prime = second_prime (mod 10 ** (int(log10(first_prime)) + 1))
+        # so, we simply have to add 10 ** (int(log10(first_prime)) + 1)
+        # to first prime until we get a number that is a multiple of
+        # second_prime
         increment = 10 ** (int(log10(first_prime)) + 1)
         first_section = increment
         while True:
@@ -46,7 +51,7 @@ def main(max_number):
                 break
             first_section += increment
 
-        #print first_prime, second_prime, coefficient, coefficient * second_prime
+        #print first_prime, second_prime, residual
         summation += residual
         first_prime = second_prime
 
