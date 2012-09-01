@@ -6,6 +6,7 @@ Created on Aug 31, 2012
 
 from math import log10
 from ProjectEulerPrime import ProjectEulerPrime
+from ProjectEulerLibrary import crt
 
 
 def generate_next_prime(start=2):
@@ -38,24 +39,23 @@ def main(max_number):
         if first_prime > max_number:
             break
 
-        # we have the congruence relation:
-        # first_prime = second_prime (mod 10 ** (int(log10(first_prime)) + 1))
-        # so, we simply have to add 10 ** (int(log10(first_prime)) + 1)
-        # to first prime until we get a number that is a multiple of
-        # second_prime
-        increment = 10 ** (int(log10(first_prime)) + 1)
-        first_section = increment
-        while True:
-            residual = first_section + first_prime
-            if residual % second_prime == 0:
-                break
-            first_section += increment
+        # we have the two following congruence relations:
+        # x = 0 (mod second_prime)
+        # x = first_prime(mod 10 ** (int(log10(first_prime)) + 1))
+        # so we use the Chinese Remainder Theorem to solve for x.
+
+        # thanks to Eigenray from http://projecteuler.net/thread=134
+        # for the suggestion to use CRT.
+
+        modulos = (second_prime, (10 ** (int(log10(first_prime)) + 1)),)
+        remainders = (0, first_prime,)
+
+        summation += crt(modulos, remainders)
 
         #print first_prime, second_prime, residual
-        summation += residual
         first_prime = second_prime
 
-    print summation
+    print "Sum(S) : %d" % summation
 
 
 if __name__ == '__main__':
