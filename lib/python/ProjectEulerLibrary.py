@@ -149,7 +149,7 @@ def crt(ms, az):
     """
         Chinese Remainder Theorem:
         ms = list of pairwise relatively prime integers
-        as = remainders when x is divided by ms
+        az = remainders when x is divided by ms
         (ai is 'each in as', mi 'each in ms')
 
         The solution for x modulo M (M = product of ms) will be:
@@ -157,11 +157,11 @@ def crt(ms, az):
         where Mi = M/mi and yi = (Mi)^-1 (mod mi) for 1 <= i <= r.
 
         from:
-            http://mail.python.org/pipermail/edu-sig/2001-August/001665.html
+        http://mail.python.org/pipermail/edu-sig/2001-August/001665.html
     """
     from operator import add, mul
 
-    M = reduce(mul, ms)        # multiply ms together
-    Ms = tuple(M / mi for mi in ms)   # list of all M/mi
+    M = reduce(mul, ms)  # multiply ms together
+    Ms = (M / mi for mi in ms)   # list of all M/mi
     ys = (inverse(Mi, mi) for Mi, mi in zip(Ms, ms))  # uses inverse,eea
     return reduce(add, (ai * Mi * yi for ai, Mi, yi in zip(az, Ms, ys))) % M
