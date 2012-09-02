@@ -122,13 +122,17 @@ def phi(number, primeObject=ProjectEulerPrime()):
 def eea(a, b):
     """
         Extended Euclidean Algorithm for GCD
+
+        returns [gcd, x, y] such that:
+        x * a + y * b = gcd(a, b)
+
         from:
         http://mail.python.org/pipermail/edu-sig/2001-August/001665.html
     """
     from operator import sub
 
-    v1 = [a, 1, 0]
-    v2 = [b, 0, 1]
+    v1 = (a, 1, 0,)
+    v2 = (b, 0, 1,)
     while v2[0] != 0:
         p = v1[0] // v2[0]
         v2, v1 = map(sub, v1, (p * vi for vi in v2)), v2
@@ -137,7 +141,7 @@ def eea(a, b):
 
 def modular_inverse(m, k):
     """
-        Return b such that b*m mod k = 1, or 0 if no solution
+        Return b such that b * m mod k = 1, or 0 if no solution
         from:
         http://mail.python.org/pipermail/edu-sig/2001-August/001665.html
     """
@@ -150,7 +154,7 @@ def crt(ms, az):
         Chinese Remainder Theorem:
         ms = list of pairwise relatively prime integers
         az = remainders when x is divided by ms
-        (ai is 'each in as', mi 'each in ms')
+        (ai is 'each in az', mi 'each in ms')
 
         The solution for x modulo M (M = product of ms) will be:
         x = a1*M1*y1 + a2*M2*y2 + ... + ar*Mr*yr (mod M),
