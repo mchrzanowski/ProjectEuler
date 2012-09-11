@@ -32,12 +32,9 @@ def main(max_number):
 
     first_prime = prime_generator.next()
 
-    while True:
+    while first_prime <= max_number:
 
         second_prime = prime_generator.next()
-
-        if first_prime > max_number:
-            break
 
         # we have the two following congruence relations:
         # x = 0 (mod second_prime)
