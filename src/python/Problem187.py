@@ -16,17 +16,18 @@ def main():
     formula given by MathWorld:
     http://mathworld.wolfram.com/Semiprime.html
     '''
-    
+
     # first, get all primes < sqrt(LIMIT). place a 0 at index 0 for easier indexing.
     primesFound = [0]
     primesFound.extend(sieveOfEratosthenes(sqrt(LIMIT)))
-    
+
     solution = 0
-    for i in xrange(1, len(primesFound)): solution += pi(LIMIT / primesFound[i]) - i + 1 
-            
+    for i in xrange(1, len(primesFound)):
+        solution += pi(LIMIT / primesFound[i]) - i + 1
+
     print "Found:", solution, "composites formed from 2 primes."
-                
-    
+
+
 if __name__ == '__main__':
     start = time()
     main()

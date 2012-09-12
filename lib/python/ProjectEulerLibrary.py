@@ -7,6 +7,22 @@ Created on Jan 19, 2012
 from ProjectEulerPrime import ProjectEulerPrime
 
 
+def generate_next_prime(start=2):
+    ''' generator that spits out primes '''
+    # since 2 is the only even number,
+    # immediately yield it and start
+    # the below loop at the first odd prime.
+    if start == 2:
+        yield 2
+        start = 3
+
+    prime_object = ProjectEulerPrime()
+    while True:
+        if prime_object.isPrime(start):
+            yield start
+        start += 2
+
+
 def pi(number):
     ''' naive implementation of the prime counting function'''
     return len(sieveOfEratosthenes(number))
