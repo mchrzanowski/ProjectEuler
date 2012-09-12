@@ -17,7 +17,8 @@ def main():
     http://mathworld.wolfram.com/Semiprime.html
     '''
 
-    # first, get all primes < sqrt(LIMIT). place a 0 at index 0 for easier indexing.
+    # first, get all primes < sqrt(LIMIT).
+    # place a 0 at index 0 for easier indexing.
     primesFound = [0]
     primesFound.extend(sieveOfEratosthenes(sqrt(LIMIT)))
 

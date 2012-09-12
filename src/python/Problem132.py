@@ -4,7 +4,6 @@ Created on Sep 10, 2012
 @author: mchrzanowski
 '''
 
-from math import log
 from ProjectEulerLibrary import generate_next_prime
 
 

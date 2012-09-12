@@ -5,24 +5,7 @@ Created on Aug 31, 2012
 '''
 
 from math import log10
-from ProjectEulerPrime import ProjectEulerPrime
-from ProjectEulerLibrary import crt
-
-
-def generate_next_prime(start=2):
-
-    # since 2 is the only even number,
-    # immediately yield it and start
-    # the below loop at the first odd prime.
-    if start == 2:
-        yield 2
-        start = 3
-
-    prime_object = ProjectEulerPrime()
-    while True:
-        if prime_object.isPrime(start):
-            yield start
-        start += 2
+from ProjectEulerLibrary import crt, generate_next_prime
 
 
 def main(max_number):
