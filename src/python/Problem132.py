@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
         description="Problem 132. URL: http://projecteuler.net/problem=132")
-    parser.add_argument('-R', type=int, help="Number of digits in repunit.")
+    parser.add_argument('-R', type=int, help="Number of digits in the base-10 repunit.")
     parser.add_argument('-n', type=int, help="Number of unique primes to find.")
     args = vars(parser.parse_args())
 
