@@ -8,16 +8,19 @@ from math import log
 from ProjectEulerLibrary import generate_next_prime
 
 
-def main(repunit_length, number_of_primes_to_find):
+def main():
+
+    # it's hard to know whether a number even
+    # has a given number of prime factors
+    # (avg case is ln ln n). so, disallow
+    # the user from inputting a given number
+    # of prime factors to find like I might normally do.
+
+    repunit_length = 10 ** 9
+    number_of_primes_to_find = 40
 
     prime_factors = set()
-
     primes = generate_next_prime()
-
-    # avg. number of distinct primes is ~ lg lg n
-    # or about ln(2.3 * log10(10 ** repunit_length))
-    if number_of_primes_to_find > 2 * log(2.3 * repunit_length):
-        raise Exception("This number can't have so many unique factors!")
 
     while len(prime_factors) != number_of_primes_to_find:
 
@@ -38,17 +41,9 @@ def main(repunit_length, number_of_primes_to_find):
 
 
 if __name__ == '__main__':
-    import argparse
     import time
 
     start = time.time()
-
-    parser = argparse.ArgumentParser(
-        description="Problem 132. URL: http://projecteuler.net/problem=132")
-    parser.add_argument('-R', type=int, help="Number of digits in the base-10 repunit.")
-    parser.add_argument('-n', type=int, help="Number of unique primes to find.")
-    args = vars(parser.parse_args())
-
-    main(args['R'], args['n'])
+    main()
     end = time.time()
     print "Runtime: %f seconds" % (end - start)
