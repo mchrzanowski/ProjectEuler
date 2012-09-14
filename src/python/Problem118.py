@@ -10,6 +10,16 @@ from ProjectEulerPrime import ProjectEulerPrime
 
 def main():
 
+    # the strategy here is to first find
+    # all the primes composed of digits 1-9
+    # (with at most one of each digit) and to sort
+    # them by size.
+    # We then try all the various ways
+    # of adding up to 9 by adding variously-sized groups
+    # (ie, groups of 1 prime, 2 primes, .... 6 primes)
+    # There can only be at most 6 as primes must end with
+    # an odd number (thus, 5 numbers), and then there's 2.
+
     prime_object = ProjectEulerPrime()
 
     primes_sorted_by_size = dict()
