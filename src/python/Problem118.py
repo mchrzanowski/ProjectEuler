@@ -244,7 +244,6 @@ def main():
                                     continue
 
                                 all_uniques = set(uniques_with_fifth)
-
                                 for digit in sixth:
                                     all_uniques.add(digit)
 
