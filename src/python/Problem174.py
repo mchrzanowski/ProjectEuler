@@ -9,10 +9,10 @@ from Problem173 import construct_laminae_frequency
 
 def main(tile_limit, lower_n_bound, upper_n_bound):
 
-    # first, construct L(n)
+    # first, construct L(n) -> #
     L = construct_laminae_frequency(tile_limit)
 
-    # now, build N(n)
+    # now, build N(#)
     N = dict()
     for number_of_tiles in L:
         number_of_laminae = L[number_of_tiles]
