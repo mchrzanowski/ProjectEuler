@@ -4,13 +4,13 @@ Created on Sep 14, 2012
 @author: mchrzanowski
 '''
 
-from Problem173 import constuct_laminae_frequency
+from Problem173 import construct_laminae_frequency
 
 
 def main(tile_limit, lower_n_bound, upper_n_bound):
 
     # first, construct L(n)
-    L = constuct_laminae_frequency(tile_limit)
+    L = construct_laminae_frequency(tile_limit)
 
     # now, build N(n)
     N = dict()

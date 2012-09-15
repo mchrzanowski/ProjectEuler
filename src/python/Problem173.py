@@ -5,7 +5,7 @@ Created on Aug 24, 2012
 '''
 
 
-def constuct_laminae_frequency(tile_limit):
+def construct_laminae_frequency(tile_limit):
     ''' return a dict where:
         key = number of tiles
         value = number of different laminae formed
@@ -45,7 +45,7 @@ def main(tile_limit):
     # and to then construct every possible square that could support
     # such a hole given the limit on the number of tiles.
 
-    laminae_frequency = constuct_laminae_frequency(tile_limit)
+    laminae_frequency = construct_laminae_frequency(tile_limit)
 
     print "Unique square laminae: %d" % \
         sum(laminae_frequency[tile_size] for tile_size in laminae_frequency)
