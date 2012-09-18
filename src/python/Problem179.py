@@ -15,7 +15,7 @@ def main(max_n):
 
     prime_object = ProjectEulerPrime()
 
-    for n in xrange(2, max_n):
+    for n in xrange(max_n, 1, -1):
 
         uniques = set()
         factorization = prime_object.factorize(n)
