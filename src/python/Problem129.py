@@ -48,7 +48,6 @@ def main(value_to_exceed):
 
         factor += 1
 
-
 if __name__ == '__main__':
     import argparse
     import time
