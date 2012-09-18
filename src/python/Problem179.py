@@ -4,8 +4,7 @@ Created on Sep 17, 2012
 @author: mchrzanowski
 '''
 
-from operator import mul
-from itertools import combinations
+from collections import Counter
 from ProjectEulerPrime import ProjectEulerPrime
 
 
@@ -17,22 +16,28 @@ def main(max_n):
 
     for n in xrange(max_n, 1, -1):
 
-        uniques = set()
+        # from:
+        # http://stackoverflow.com/questions/110344/algorithm-to-
+        # calculate-the-number-of-divisors-of-a-given-number
+
+        # we know that:
+        # divisors(n) = product(each factor's multiplicity + 1)
+
         factorization = prime_object.factorize(n)
 
-        for subset_length in xrange(1, len(factorization) + 1):
-            for combination in combinations(factorization, subset_length):
-                uniques.add(reduce(mul, combination))
+        multiplicities = Counter(factorization)
 
-        divisors[n] = len(uniques)
-        #print "D[%d] = %s" % (n, divisors[n])
+        divisors[n] = 1
+
+        for factor in multiplicities:
+            divisors[n] *= multiplicities[factor] + 1
 
     count = 0
     for n in divisors:
         if n + 1 in divisors and divisors[n] == divisors[n + 1]:
             count += 1
 
-    print count
+    print "Adjacent pairs with the same number of divisors: %d" % count
 
 
 if __name__ == '__main__':
