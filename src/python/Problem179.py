@@ -24,12 +24,12 @@ def main(max_n):
             for combination in combinations(factorization, subset_length):
                 uniques.add(reduce(mul, combination))
 
-        divisors[n] = uniques
+        divisors[n] = len(uniques)
         #print "D[%d] = %s" % (n, divisors[n])
 
     count = 0
     for n in divisors:
-        if n + 1 in divisors and len(divisors[n]) == len(divisors[n + 1]):
+        if n + 1 in divisors and divisors[n] == divisors[n + 1]:
             count += 1
 
     print count
