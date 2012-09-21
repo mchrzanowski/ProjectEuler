@@ -17,36 +17,34 @@ def main(max_n, solution_number):
     while True:
 
         last_z = 2 + (k - 1) * 3
-
         if produce_n(last_z, k) >= max_n:
             break
 
-        z = 1
-
+        z = k
         while True:
 
             n = produce_n(z, k)
-
             #print "k=%d, z=%d, n=%d" % (k, z, n)
-
             if n <= 0:
                 break
-
             if n < max_n:
                 if n not in solutions:
-                    solutions[n] = 1
+                    solutions[n] = 0
+
+                if z > k and z <= 2 * k - 1:
+                    solutions[n] += 2
                 else:
                     solutions[n] += 1
-
             z += 1
         k += 1
 
-    valuable_keys = set()
+    valuable_keys = 0
     for key in solutions:
         if solutions[key] == solution_number:
-            valuable_keys.add(key)
+            valuable_keys += 1
+            #print key
 
-    print len(valuable_keys)
+    print valuable_keys
 
 
 if __name__ == '__main__':
