@@ -44,10 +44,7 @@ def main(max_n, solution_number):
 
     last_z_is_larger_than_max_n = False
     k = 1
-    while True:
-
-        if last_z_is_larger_than_max_n:
-            break
+    while not last_z_is_larger_than_max_n:
 
         for z in xrange(2 + (k - 1) * 3, k - 1, -1):
 
