@@ -20,21 +20,21 @@ def main(max_n, solution_number):
         if produce_n(last_z, k) >= max_n:
             break
 
-        z = k
-        while True:
+        for z in xrange(2 + (k - 1) * 3, k - 1, -1):
 
             n = produce_n(z, k)
             #print "k=%d, z=%d, n=%d" % (k, z, n)
-            if n <= 0:
+            if n >= max_n:
                 break
-            if n < max_n:
-                if n not in solutions:
-                    solutions[n] = 0
 
-                if z > k and z <= 2 * k - 1:
-                    solutions[n] += 2
-                else:
-                    solutions[n] += 1
+            if n not in solutions:
+                solutions[n] = 0
+
+            if z > k and z <= 2 * k - 1:
+                solutions[n] += 2
+            else:
+                solutions[n] += 1
+
             z += 1
         k += 1
 
