@@ -38,7 +38,7 @@ def main(max_n, solution_number):
     # Finally, note that the last z value before n = 0 is, for a k:
     # last_z = 2 + 3 * (k - 1)
     # Therefore, the strategy is to count from last_z to
-    # the max z. We cache the n values up until then. If
+    # k. We cache the n values up until then. If
     # n is >= max_n along the way, we stop and increment k.
     # We have finished once the last value of z for a given k is >= max_n.
 
