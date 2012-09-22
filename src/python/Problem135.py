@@ -46,7 +46,7 @@ def main(max_n, solution_number):
     k = 1
     while not last_z_is_larger_than_or_equal_to_max_n:
 
-        for z in xrange(2 + (k - 1) * 3, k - 1, -1):
+        for z in xrange(2 + 3 * (k - 1), k - 1, -1):
 
             n = produce_n(z, k)
 
@@ -62,8 +62,6 @@ def main(max_n, solution_number):
                 solutions[n] += 2
             else:
                 solutions[n] += 1
-
-            z += 1
 
         k += 1
 
