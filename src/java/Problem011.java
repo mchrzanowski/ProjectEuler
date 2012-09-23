@@ -1,4 +1,4 @@
-package ProjectEulerLibrary;
+
 
 public class Problem011 {
 	

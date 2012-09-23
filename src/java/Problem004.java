@@ -1,4 +1,4 @@
-package ProjectEulerLibrary;
+
 
 import java.util.Stack;
 
