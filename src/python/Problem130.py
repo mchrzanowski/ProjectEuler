@@ -1,4 +1,4 @@
-from math import ceil, log10
+from math import log10
 from ProjectEulerPrime import ProjectEulerPrime
 
 def main():
@@ -23,7 +23,8 @@ def main():
     while len(results) < 25:
 
         # obviously, 10 ** i > (9 * current).
-        for i in xrange(int(ceil(log10(9 * current))), int((current - 1) / 2.) + 1):
+        # note that since current is odd, current - 1 is even.
+        for i in xrange(int(log10(9 * current) + 1), int((current - 1) / 2.) + 1):
             if (current - 1) % i == 0 and 10 ** i % (9 * current) == 1:
                 results.add(current)
                 break
