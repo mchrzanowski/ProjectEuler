@@ -22,7 +22,7 @@ def main():
 
     while len(results) < 25:
 
-        # obviously, 10 ** i >= (9 * current).
+        # obviously, 10 ** i > (9 * current).
         for i in xrange(int(ceil(log10(9 * current))), int((current - 1) / 2.) + 1):
             if (current - 1) % i == 0 and 10 ** i % (9 * current) == 1:
                 results.add(current)
