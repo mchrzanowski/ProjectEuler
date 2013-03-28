@@ -52,4 +52,4 @@ if __name__ == '__main__':
     main()
 
     end = time.time()
-    print "Runtime: %f seconds." % (end - start)
+    print "Runtime: {} seconds.".format(end - start)
