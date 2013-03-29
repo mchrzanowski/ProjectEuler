@@ -14,10 +14,11 @@ def main():
         P_new = L[-2] + L[-1] + P[-2] 
     '''
 
+    LIMIT = 12
     Ls = [17, 305]
     remainders = [1, 18]
 
-    for _ in xrange(10):
+    for _ in xrange(LIMIT - len(Ls)):
         quotient = 17 * Ls[-1]
         remainder = Ls[-2] + Ls[-1] + remainders[-2]
         Ls.append(quotient + 16 * remainders[-1])
