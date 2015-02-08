@@ -7,7 +7,7 @@ Created on Jan 13, 2012
 from time import time
 import numpy as np
 
-LIMIT = 250
+LIMIT = 200
 COINS = (1, 2, 5, 10, 20, 50, 100, 200)
 
 # O(LIMIT * |COINS|)
