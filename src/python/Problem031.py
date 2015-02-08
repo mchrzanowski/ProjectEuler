@@ -7,7 +7,7 @@ Created on Jan 13, 2012
 from time import time
 import numpy as np
 
-LIMIT = 200
+LIMIT = 300
 COINS = (1, 2, 5, 10, 20, 50, 100, 200)
 
 # O(LIMIT * |COINS|)
@@ -24,7 +24,10 @@ def dp():
 
     for c in xrange(2, len(COINS) + 1):
         for n in xrange(2, LIMIT + 1):
+            # adding a new coin still means we can produce n using
+            # coins 1,...c-1 the exact same way
             M[n, c] = M[n, c - 1]
+            # can we produce it using this new coin?
             if n - COINS[c - 1] >= 0:
                 M[n, c] += M[n - COINS[c - 1], c]
 
@@ -48,8 +51,9 @@ def bruteForce():
 
 def _run(func, name):
     begin = time()
-    print "Answer: %s" % func()
+    possibilities = func()
     end = time()
+    print 'Answer: %s' % possibilities
     print "%s Runtime: %s secs." % (name, end - begin)
 
 def main():
